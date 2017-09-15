@@ -7,20 +7,32 @@
     "test": "./tests.js",
     "start": "./server.js"
   },
-  "author": "Lawrence Francell",
+  "author": {
+    "name": "Lawrence Francell",
+    "email": "no1special@mac.com",
+    "url": "http://twintails.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twintails/react-cards.git"
+  },
+  "engines": {
+    "node": ">= 8.5",
+    "npm": ">= 5.3"
+  },
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-syntax-class-properties": "^6.13.0",
-    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-runtime": "^6.26.0"
+    "babel-core": "@6.26.0",
+    "babel-plugin-syntax-class-properties": "@6.13.0",
+    "babel-plugin-syntax-object-rest-spread": "@6.13.0",
+    "babel-plugin-transform-class-properties": "@6.24.1",
+    "babel-plugin-transform-object-rest-spread": "@6.26.0",
+    "babel-plugin-transform-runtime": "@6.23.0",
+    "babel-preset-env": "@1.6.0",
+    "babel-preset-react": "@6.24.1",
+    "babel-runtime": "@6.26.0"
   },
   "dependencies": {
-    "react": "^15.6.1"
+    "react": "@15.6.1"
   }
 }
