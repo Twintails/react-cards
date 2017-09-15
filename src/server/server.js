@@ -9,5 +9,12 @@ const bull = {
   weight: 1.1
 }
 
-console.log(`The Cow says ${cow.sound}, is ${color} in coloring, and weighs an average of ${weight} Tonnes.`)
-console.log(`However, the Bull weighs an average of ${weight} Tonnes.`)
+console.log(`The Cow says ${cow.sound}, is ${cow.color} in coloring, and weighs an average of ${cow.weight} Tonnes.`)
+console.log(`However, the Bull weighs an average of ${bull.weight} Tonnes.`)
+
+class AppComponent {
+  static PropTypes = {
+    sound: "hurm"
+  }
+}
+console.log(<AppComponent />)
