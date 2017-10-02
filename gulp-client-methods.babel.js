@@ -4,6 +4,7 @@
 // import child_process from "child_process"
 import webpack from 'webpack'
 import webpackConfig from './webpack.config'
+import WebpackDevServer from 'webpack-dev-server'
 
 // const $g = require("gulp-load-plugins")()
 
@@ -18,7 +19,7 @@ const consoleStats = {
   version: false
 }
 
-export function __BuildingClient (cb) {
+export function __Building_Client (cb) {
   webpack(webpackConfig, (err, stats) => {
     if (err) {
       cb(err)
@@ -27,4 +28,14 @@ export function __BuildingClient (cb) {
     console.log(stats.toString(consoleStats))
     cb()
   })
+}
+
+export function __Watching_Client () {
+  const compiler = webpack(webpackConfig)
+  const server = new WebpackDevServer(compiler, {
+    publicPath: '/build/',
+    hot: true,
+    stats: consoleStats
+  })
+  server.listen(8080, () => {})
 }

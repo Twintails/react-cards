@@ -7,7 +7,7 @@ import {
   __Testing_Server,
   __Running_Tests_and_Serving
 } from "./gulp-server-methods.babel"
-import { __BuildingClient } from "./gulp-client-methods.babel"
+import { __Building_Client, __Watching_Client } from "./gulp-client-methods.babel"
 
 // SERVER TASKS
 
@@ -63,5 +63,21 @@ gulp.task(
 
 
 // CLIENT TASKS
+gulp.task("client:clean", cb => {
+  rimraf("./public/build", () => cb())
+})
+gulp.task(
+  "client:build",
+  gulp.series(
+    "client:clean",
+    __Building_Client
+  )
+)
+gulp.task(
+  "client:dev",
+  gulp.series("client:clean", __Watching_Client)
+)
 
-gulp.task("client:build", __BuildingClient)
+
+// DEV TASKS
+gulp.task("dev", gulp.parallel("server:dev", "client:dev"))

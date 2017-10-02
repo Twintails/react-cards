@@ -2,7 +2,13 @@ doctype html
 html
   head
     title cards
+    meta(name="viewport" content="width-device-width, initial-scale=1.0")
+    if useExternalStyles
+      link(rel="stylesheet", href="/build/app.css")
   body
-    h1 Cow Houses!
-    h2 Gloom!
-    p Zoom!
+    #mount
+      h1 Cow Houses!
+      h2 Gloom!
+      p Zoom!
+    script(src=scriptRoot + "vendor.js")
+    script(src=scriptRoot + "app.js")
