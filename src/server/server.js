@@ -1,20 +1,41 @@
-const cow = {
-  sound: "moo",
-  color: "Piebald",
-  weight: 0.8
-}
+import express from 'express'
+import http from 'http'
 
-const bull = {
-  ...cow,
-  weight: 1.1
-}
+import { isDevelopment } from './settings'
 
-console.log(`The Cow says ${cow.sound}, is ${cow.color} in coloring, and weighs an average of ${cow.weight} Tonnes.`)
-console.log(`However, the Bull weighs an average of ${bull.weight} Tonnes.`)
+/*_________________________________________
+|
+|  Setup
+|
+|_________________________________________*/
 
-class AppComponent {
-  static PropTypes = {
-    sound: "hurm"
-  }
-}
-console.log(<AppComponent />)
+const app = express()
+const server = new http.Server(app)
+
+
+/*_________________________________________
+|
+|  Config
+|
+|_________________________________________*/
+
+app.set("view engine", "pug")
+app.use(express.static("public"))
+
+const useExternalStyles = !isDevelopment
+const scriptRoot = isDevelopment
+                 ? "http://localhost:8080/build"
+                 : "/build"
+
+app.get("*", (req, res) => {
+  res.render("index", {
+    useExternalStyles,
+    scriptRoot
+  })
+})
+
+
+const port = process.env.PORT || 8085
+server.listen(port, () => {
+  console.log(`Server running on port: ${port}`)
+})

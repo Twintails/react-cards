@@ -5,7 +5,8 @@
     "browser": true,
     "commonjs": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "jasmine":true
   },
   "parser": "babel-eslint",
   "rules": {
@@ -20,6 +21,9 @@
     "react/jsx-uses-vars": "error"
   },
   "globals": {
-    "console": false
+    "console": false,
+    "process": false,
+    "IS_PRODUCTION": false,
+    "IS_DEVELOPMENT": false
   }
 }
