@@ -10,9 +10,12 @@ body {
 }
 
 body {
-  background: $prime-white;
+  background-color: $warm-gray;
+  color: $warm-white;
 
   h1 {
-    color: $prime-red;
+    background-color: lighten($warm-gray, 10%);
+    margin: 0;
+    padding: .3em 2em;
   }
 }
