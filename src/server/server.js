@@ -24,8 +24,8 @@ app.use(express.static("public"))
 
 const useExternalStyles = !isDevelopment
 const scriptRoot = isDevelopment
-                 ? "http://localhost:8080/build"
-                 : "/build"
+                 ? "http://localhost:8080/build/"
+                 : "/build/"
 
 app.get("*", (req, res) => {
   res.render("index", {

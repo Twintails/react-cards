@@ -3,6 +3,7 @@ var path = require('path'),
     webpack = require('webpack'),
     ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+
 const vendor = [
   "lodash"
 ]
@@ -35,7 +36,9 @@ function createConfig(isDebug) {
   let publicPath = "/build/"
 
   if (isDebug) {
-    console.log("Debug Mode")
+    plugins.push(new webpack.HotModuleReplacementPlugin())
+    clientEntry.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/only-dev-server")
+    publicPath = "http://localhost:8080/build/"
   } else {
     const extract_CSS = new ExtractTextPlugin("[name].css")
     const extract_SCSS = new ExtractTextPlugin("[name].css")
