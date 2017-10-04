@@ -29,7 +29,8 @@ export function __Running_Nodemon() {
   return $g.nodemon({
     script: "./server.js",
     watch: ["views", "build"],
-    ignore: ["**/tests"]
+    ignore: ["**/tests"],
+    exec: "node --inspect"
   }).once('quit', () => process.exit())
 }
 

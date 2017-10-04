@@ -11,7 +11,7 @@
   "parser": "babel-eslint",
   "rules": {
     "semi": 0,
-    "no-console": "warn",
+    "no-console": 0,
     "indent": [
       "error", 2,
       { "SwitchCase": 1 ,

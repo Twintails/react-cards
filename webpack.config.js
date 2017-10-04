@@ -14,7 +14,7 @@ const config = createConfig(process.env.NODE_ENV !== "production")
 
 
 function createConfig(isDebug) {
-  const devtool = isDebug ? 'cheap-module-source-map' : undefined
+  const devtool = isDebug ? 'eval-source-map' : undefined
   const plugins = [
     new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js'}),
     new webpack.DefinePlugin({
@@ -34,12 +34,16 @@ function createConfig(isDebug) {
     files:  { test:/\.(tif|tiff|png|jpg|jpeg|gif|woff|ttf|eot|svg|woff2)(\?\S*)?$/, loader: "url-loader?limit=5000"}
   }
 
-  const clientEntry = ["./src/client/client.jsx"]
+  const clientEntry = ["./src/client/client.js"]
   let publicPath = "/build/"
 
   if (isDebug) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
-    clientEntry.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/only-dev-server")
+    clientEntry.unshift(
+      "react-hot-loader/patch",
+      "webpack-dev-server/client?http://localhost:8080/",
+      "webpack/hot/only-dev-server"
+    )
     publicPath = "http://localhost:8080/build/"
   } else {
     const extract_CSS = new ExtractTextPlugin("[name].css")

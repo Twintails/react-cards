@@ -12,10 +12,4 @@ body {
 body {
   background-color: $warm-gray;
   color: $warm-white;
-
-  h1 {
-    background-color: lighten($warm-gray, 10%);
-    margin: 0;
-    padding: .3em 2em;
-  }
 }
