@@ -3,7 +3,8 @@
 - npm >= __5.3__
 - Webpack __3.6.0__
 - Webpack Dev Server __2.9.1__
-- React __15.6.1__
+- React __16.0.0__
+- ReactDOM __16.0.0__
 - Node Sass __4.5.3__
 - ESLint __4.6.1__
 - Babel __6.26.0__

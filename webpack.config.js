@@ -5,7 +5,9 @@ var path = require('path'),
 
 
 const vendor = [
-  "lodash"
+  "lodash",
+  "react",
+  "react-dom"
 ]
 
 const config = createConfig(process.env.NODE_ENV !== "production")
@@ -32,7 +34,7 @@ function createConfig(isDebug) {
     files:  { test:/\.(tif|tiff|png|jpg|jpeg|gif|woff|ttf|eot|svg|woff2)(\?\S*)?$/, loader: "url-loader?limit=5000"}
   }
 
-  const clientEntry = ["./src/client/client.js"]
+  const clientEntry = ["./src/client/client.jsx"]
   let publicPath = "/build/"
 
   if (isDebug) {
