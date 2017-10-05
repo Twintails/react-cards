@@ -20,10 +20,15 @@
 
 1.  cd into directory
 
-1.  npm install (you might need to install some gloabals like eslint???)
+1.  npm install
     ```bash
     npm install -g eslint
     ```
+    - Also, you might need to install some globals like this<br /> `npm i -g "gulpjs/gulp#4.0" eslint`
+    - If you already have gulp installed globally then;<br />
+      `npm uninstall -g gulp && npm i -g "gulpjs/gulp#4.0"`
+
+
 
 1.  set node env for Prod build (`set` on windows, `export` on LINUX/UNIX)
     ```bash
