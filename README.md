@@ -79,4 +79,4 @@ __NOTE:__ Should not crash on ERROR, should log errors to Console
 1.  Include steps to reproduce
 
 1.  A Debug or stacktrace pasted in 'should' contain the first line or so
-   which should realate to the item in question. (please don't paste spaghetti)
+   which should relate to the item in question. (please don't paste spaghetti)

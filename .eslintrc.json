@@ -12,6 +12,7 @@
   "rules": {
     "semi": 0,
     "no-console": 0,
+    "no-unused-vars": 1,
     "indent": [
       "error", 2,
       { "SwitchCase": 1 ,

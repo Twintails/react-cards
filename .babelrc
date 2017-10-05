@@ -6,6 +6,6 @@
     "syntax-object-rest-spread",
     "transform-class-properties",
     "transform-object-rest-spread",
-    "transform-runtime"
+    "babel-polyfill"
   ]
 }

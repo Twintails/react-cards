@@ -7,7 +7,10 @@ var path = require('path'),
 const vendor = [
   "lodash",
   "react",
-  "react-dom"
+  "react-dom",
+  "react-router-dom",
+  "socket.io-client",
+  "rxjs"
 ]
 
 const config = createConfig(process.env.NODE_ENV !== "production")
@@ -34,7 +37,7 @@ function createConfig(isDebug) {
     files:  { test:/\.(tif|tiff|png|jpg|jpeg|gif|woff|ttf|eot|svg|woff2)(\?\S*)?$/, loader: "url-loader?limit=5000"}
   }
 
-  const clientEntry = ["./src/client/client.js"]
+  const clientEntry = ["babel-polyfill", "./src/client/client.js"]
   let publicPath = "/build/"
 
   if (isDebug) {
