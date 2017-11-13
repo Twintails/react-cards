@@ -37,7 +37,7 @@ function createConfig(isDebug) {
     files:  { test:/\.(tif|tiff|png|jpg|jpeg|gif|woff|ttf|eot|svg|woff2)(\?\S*)?$/, loader: "url-loader?limit=5000"}
   }
 
-  const clientEntry = ["babel-polyfill", "./src/client/client.js"]
+  const clientEntry = ["babel-polyfill", "./src/client/client"]
   let publicPath = "/build/"
 
   if (isDebug) {

@@ -1,0 +1,63 @@
+span#mockup-vsi.video-speed-indicator {
+  display: inline-block;
+  line-height: 2rem;
+  min-width: 15vw;
+  padding: 2px 20px;
+}
+
+button {
+  background-image: linear-gradient(to top, #206c9f, #607D8B);
+  border: 0;
+  color: #f5f5f5;
+  font-size: 1.2rem;
+  height: 30px;
+
+  &.slower {
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+
+  &.faster {
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+}
+
+.reveal figcaption {
+  font-size: 50%;
+}
+
+.reveal .sketch {
+  img {
+    max-height: 55%;
+  }
+}
+
+.reveal section video {
+  max-height: 500px;
+  min-height: 300px;
+}
+
+.reveal section p.tv {
+  background-image: url('../../images/tvbackclean.jpg');
+  background-position-x: -8px;
+  background-position-y: 0;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  box-sizing: border-box;
+  color: rgb(216, 255, 5);
+  filter: saturate(5) contrast(1.1);
+  height: 480px;
+  line-height: 2em;
+  margin: 1em auto;
+  padding-right: 4em;
+  padding-top: 3.7em;
+  text-shadow: 1px 2px 2px rgb(70, 70, 70);
+  width: 748px;
+
+  strong {
+    display: block;
+  }
+}

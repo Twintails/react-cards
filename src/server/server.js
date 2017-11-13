@@ -3,6 +3,7 @@ import http from 'http'
 
 import { isDevelopment } from './settings'
 
+
 /*_________________________________________
 |
 |  Setup
@@ -23,9 +24,7 @@ app.set("view engine", "pug")
 app.use(express.static("public"))
 
 const useExternalStyles = !isDevelopment
-const scriptRoot = isDevelopment
-                 ? "http://localhost:8080/build/"
-                 : "/build/"
+const scriptRoot = isDevelopment ? "http://localhost:8080/build/" : "/build/"
 
 app.get("*", (req, res) => {
   res.render("index", {
@@ -35,6 +34,11 @@ app.get("*", (req, res) => {
 })
 
 
+/*_________________________________________
+|
+|  Bootup
+|
+|_________________________________________*/
 const port = process.env.PORT || 8085
 server.listen(port, () => {
   console.log(`Server running on port: ${port}`)

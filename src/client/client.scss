@@ -1,6 +1,7 @@
 $fa-font-path: '~font-awesome/fonts';
 @import '~font-awesome/scss/font-awesome';
 @import 'variables';
+@import 'mixins';
 
 html,
 body {
@@ -10,6 +11,6 @@ body {
 }
 
 body {
-  background-color: $warm-gray;
+  background-color: lighten($warm-gray, 40%);
   color: $warm-white;
 }

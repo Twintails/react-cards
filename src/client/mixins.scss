@@ -1,0 +1,58 @@
+@mixin user-select-none {
+  user-select: none;
+}
+
+@mixin section {
+  border: 2px solid $color-section-border;
+  border-radius: $radius;
+
+  >  h1 {
+    background: $color-section-border;
+    color: $black;
+    font-size: $header-font-size;
+    font-weight: normal;
+    margin: 0;
+    padding: 5px 10px;
+  }
+
+  > .body {
+    padding: 0 10px 10px;
+  }
+}
+
+@mixin unlistify {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  > li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@mixin raised {
+  background: $color-raised;
+  border: 3px;
+  border-bottom: 1px solid $warm-white;
+  border-radius: none;
+  border-right: 0;
+  box-shadow: 2px 2px 3px $transparent;
+}
+
+@mixin divider {
+  background: $color-section-border;
+  border-radius: $radius;
+  padding: 5px 0;
+  text-align: center;
+  transition: background 500ms cubic-bezier(.075, .82, .165, 1);
+
+  &.is-active {
+    background: $color-primary;
+    color: $color-primary-text;
+  }
+
+  > i {
+    margin: 0 5px;
+  }
+}

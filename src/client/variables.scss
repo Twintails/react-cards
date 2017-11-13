@@ -9,10 +9,41 @@ $color5: #2e2021; // hsla(356%, 18%, 15%, 1);
 
 $blue: $color3;
 $green: $color1;
+$red: $color2;
 $warm-white: $color4;
 $black: #111;
 $warm-gray: $color5;
 $primary: $warm-gray;
 
+$transparent: rgba(0, 0, 0, .1);
+
 $prime-white: #dedede;
 $prime-red: #f00;
+
+$radius: 3px;
+
+
+$color-background: #eaeaea;
+
+$color-primary:    #2196f3;
+$color-primary-text: $warm-white;
+
+$color-bad: $red;
+$color-bad-text: $warm-white;
+
+$color-good: $green;
+$color-good-text: $warm-white;
+
+$color-neutral: $prime-white;
+$color-neutral-text: $black;
+
+$color-text: darken($prime-white, 60%);
+$color-section-border: #c2c2c2;
+
+$color-raised: darken($warm-white, 5%);
+
+$width-card: 160px;
+$height-card: 170px;
+$card-scale-factor: .8;
+
+$header-font-size: 14px;
