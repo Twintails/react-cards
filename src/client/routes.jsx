@@ -1,25 +1,29 @@
 import React from "react"
 import {
   Route
-//   // Redirect//,
 //   // Link
 } from 'react-router-dom'
 
 
 import AppContainer from "./components/app/"
-// import Header from "./components/header/"
 import Lobby from "./components/lobby/"
 import Game from "./components/game/"
 
 export const routes = [
   { path: '/',
     component: AppContainer,
-    routes: [
+    IndexRoute: [
       { path: '/lobby',
         components: Lobby
+      }
+    ],
+    routes: [
+      { path: '/lobby',
+        exact: true,
+        ...Lobby
       },
       { path: '/game/:gameId',
-        components: Game//,
+        ...Game//,
         // routes: [
         //   { path: '/game/:gameId',
         //     component: Bus
@@ -33,11 +37,20 @@ export const routes = [
   }
 ]
 
+// function filterSubPaths(element) {
+//   if ( this === element.path ){
+//     return element.path
+//   }
+// }
 
-
-export const RouteWithSubRoutes = (route) => (
-  <Route path={route.path} render={props => (
-    // pass the sub-routes down to keep nesting
-    <route.component {...props} routes={route.routes}/>
-  )}/>
-)
+export const RouteWithSubRoutes = (route) => {
+  // if ( route.routes ) {
+  //   route.mypath = route.routes.filter( filterSubPaths, route.location.pathname)
+  // }
+  return (
+    <Route path={route.location.pathname} render={props => (
+      // pass the sub-routes down to keep nesting
+      <route.component {...props} routes={route.routes}/>
+    )}/>
+  )
+}

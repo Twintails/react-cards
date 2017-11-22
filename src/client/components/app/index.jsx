@@ -1,7 +1,11 @@
 import "./main.scss"
-// import Header from "../header/"
+import Header from "../header/"
 
 import React, { Component } from "react"
+import {
+  Route
+//   // Link
+} from 'react-router-dom'
 // import ReactSVG from 'react-svg';
 
 // const Cow = require('./cow.svg')
@@ -13,7 +17,7 @@ class AppContainer extends Component {
   }
 
   componentDidMount () {
-    // console.warn("Barn Rasins")
+    console.warn("Barn Rasins")
   }
 
   _click (e) {
@@ -21,12 +25,28 @@ class AppContainer extends Component {
   }
 
   render () {
+    console.log("APP PROPS: ", this.props )
     const{main, sidebar} = this.props
     return (
       <div className={`c-application`}>
+        <Header />
         <div className="inner">
-          <div className="sidebar">{sidebar}</div>
-          <div className="main">{main}</div>
+          <div className="sidebar">{this.props.routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              component={route.sidebar}
+            />
+          ))}</div>
+          <div className="main">{this.props.routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              component={route.main}
+            />
+          ))}</div>
         </div>
       </div>
     )

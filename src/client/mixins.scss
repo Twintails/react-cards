@@ -38,6 +38,7 @@
   border-radius: none;
   border-right: 0;
   box-shadow: 2px 2px 3px $transparent;
+  color: $color-text;
 }
 
 @mixin divider {
@@ -55,4 +56,15 @@
   > i {
     margin: 0 5px;
   }
+}
+
+@mixin visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }

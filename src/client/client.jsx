@@ -3,12 +3,9 @@ import "./client.scss"
 import React from "react"
 import ReactDOM from "react-dom"
 // import { AppContainer } from "react-hot-loader"
-import { Router } from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
+import { BrowserRouter as Router, Switch, Redirect} from 'react-router-dom'
 
-const history = createBrowserHistory()
-
-// import Main from "./components/main"
+// import AppContainer from "./components/app"
 
 
 // const render = Routes => {
@@ -24,23 +21,28 @@ const history = createBrowserHistory()
 // sub routes are added to any route it'll work
 
 
-const render = function renderRoutes() {
+function renderRoutes () {
+
   const RouteWithSubRoutes = require("./routes").RouteWithSubRoutes
   const routes = require( "./routes").routes
+  console.log("CLIENT ROUTES: ", routes)
   ReactDOM.render(
-    <Router history={history}>
-      <div>
+    <Router>
+      <Switch>
         {routes.map((route, i) => (
           <RouteWithSubRoutes key={i} {...route}/>
         ))}
-      </div>
+      </Switch>
+      {/* <Redirect from='*' to='/lobby' /> */}
     </Router>,
     document.getElementById("mount")
   )
 }
 
+
+//RENDER
 if (module.hot) {
-  module.hot.accept("./routes", () => { render() })
+  module.hot.accept("./routes", () => { renderRoutes() })
 }
 
-render()
+renderRoutes()

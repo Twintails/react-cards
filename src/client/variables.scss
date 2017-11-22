@@ -16,12 +16,16 @@ $warm-gray: $color5;
 $primary: $warm-gray;
 
 $transparent: rgba(0, 0, 0, .1);
+$shade: rgba(0, 0, 0, .2);
+$glow: rgba(165, 161, 252, .6);
 
 $prime-white: #dedede;
 $prime-red: #f00;
 
 $radius: 3px;
-
+$default-cubic: cubic-bezier(.075, .82, .165, 1);
+$default-shadow: 2px 2px 4px $shade;
+$default-glow: 0 0 100px $glow;
 
 $color-background: #eaeaea;
 
