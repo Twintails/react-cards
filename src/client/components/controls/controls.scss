@@ -1,0 +1,71 @@
+@import '../../variables';
+@import '../../mixins';
+
+.m-textbox {
+  position: relative;
+
+  label {
+    @include visuallyhidden;
+  }
+
+  input {
+    background: $warm-gray;
+    border: 0;
+    border-bottom: 1px solid $glow;
+    border-radius: $radius;
+    box-sizing: border-box;
+    color: $warm-white;
+    display: block;
+    font-size: 1.25em;
+    margin: 0;
+    outline: 0;
+    padding: 10px 15px;
+    width: 100%;
+
+    &:focus + .border {
+      &::before, &::after {
+        width: 50%;
+      }
+    }
+  }
+
+  &::after {
+    background: $color-section-border;
+    bottom: 0;
+    content: ' ';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .border {
+    &::before,
+    &::after {
+      background: $color-primary;
+      bottom: 0;
+      content: ' ';
+      height: 2px;
+      position: absolute;
+      transition: width 400ms ease;
+      width: 0;
+      z-index: 1;
+    }
+
+    &::before { left: 50%; }
+    &::after { right: 50%; }
+  }
+
+  &.top-border {
+    &::after {
+      top: 0;
+    }
+
+    .border {
+      &::before,
+      &::after {
+        top: 0;
+      }
+    }
+  }
+}
