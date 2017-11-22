@@ -23,7 +23,7 @@ class Header extends Component {
     return (
       <header>
         <ReactSVG
-          path="./public/cow.svg"
+          path="./cow.svg"
           className="icon"
           id="cow"
         />
