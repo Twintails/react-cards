@@ -1,0 +1,61 @@
+@import '../../variables';
+@import '../../mixins';
+
+$author-width: 7em;
+
+.c-chat {
+  @include section;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+
+  &::after {
+    background: lighten($primary, .05%);
+    border-right: 2px solid lighten($primary, 15%);
+    content: ' ';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $author-width;
+    z-index: 0;
+  }
+
+  > .messages {
+    @include unlistify;
+    flex-grow: 1;
+    overflow-y: scroll;
+    position: relative;
+    z-index: 100;
+
+    > li {
+      display: flex;
+      line-height: 2em;
+
+      .author {
+        align-self: center;
+        box-sizing: border-box;
+        padding-right: 5px;
+        text-align: right;
+        width: $author-width;
+      }
+
+      .message {
+        padding-left: 5px;
+      }
+    }
+  }
+
+  > form {
+    z-index: 100;
+
+    .m-textbox {
+      background: $color-background;
+
+      input {
+        padding: 7px 5px 5px;
+      }
+    }
+  }
+}

@@ -10,6 +10,10 @@ class LobbyContainer extends Component {
       console.log("GAME: ", game)
       console.log(`TODO: JOIN GAME ${game.title}`)
     }
+
+    this._sendMessage = (message) => {
+      console.log(`Sending: ${message}`)
+    }
   }
   render() {
     const games = [
@@ -20,10 +24,34 @@ class LobbyContainer extends Component {
       {title: "Game 5", id: 5, players: ["Gamma", "Phi", "Zelto"]},
     ]
 
+    const opSendMessage = { can: true, inProgress: false }
+    const messages = [
+      {index: 1, name: "Human", message: "Cow Houses are RED!"},
+      {index: 2, name: "Chicken", message: "Cow Houses are white!"},
+      {index: 3, name: "Goat", message: "Cow Houses are green!"},
+      {index: 4, name: "Cow", message: "Cow Houses are RED!"},
+      {index: 5, name: "Sheep", message: "Cow Houses are white!"},
+      {index: 6, name: "Human", message: "Cow Houses are RED!"},
+      {index: 7, name: "Chicken", message: "Cow Houses are white!"},
+      {index: 8, name: "Goat", message: "Cow Houses are green!"},
+      {index: 9, name: "Cow", message: "Cow Houses are RED!"},
+      {index: 10, name: "Sheep", message: "Cow Houses are white!"},
+      {index: 11, name: "Human", message: "Cow Houses are RED!"},
+      {index: 12, name: "Chicken", message: "Cow Houses are white!"},
+      {index: 13, name: "Goat", message: "Cow Houses are green!"},
+      {index: 14, name: "Cow", message: "Cow Houses are RED!"},
+      {index: 15, name: "Sheep", message: "Cow Houses are white!"},
+      {index: 16, name: "Human", message: "Cow Houses are RED!"},
+      {index: 17, name: "Chicken", message: "Cow Houses are white!"},
+      {index: 18, name: "Goat", message: "Cow Houses are green!"},
+      {index: 19, name: "Cow", message: "Cow Houses are RED!"},
+      {index: 20, name: "Sheep", message: "Cow Houses are white!"}
+    ]
+
     return (
       <div className="c-lobby">
         <GameList games={games} joinGame={this._joinGame}/>
-        <Chat />
+        <Chat opSendMessage={opSendMessage} sendMessage={this._sendMessage} messages={messages}/>
       </div>
     )
   }
@@ -43,6 +71,7 @@ class LobbySidebar extends Component {
 
     this._createGameInProgress = () => {
       console.log("TODO: Create Game")
+      return
     }
   }
   render() {
@@ -53,7 +82,7 @@ class LobbySidebar extends Component {
         <div className="m-sidebar-buttons">
           {!canLogin ? null : <button className="m-button primary" onClick={this._login}>Login</button>}
           {!canCreateGame ? null :
-            <button className="m-button good" onClick={this._createGame} disabled={this._createGameInProgress}>Create Game
+            <button className="m-button good" onClick={this._createGame} disabled={!this._createGameInProgress || "disabled"}>Create Game
             </button>}
         </div>
       </section>

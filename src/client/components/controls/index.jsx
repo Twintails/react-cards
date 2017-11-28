@@ -19,7 +19,7 @@ export class TextInput extends Component {
 
     return (
       <div className={(`m-textbox ${props.className || ""}`).trim()}>
-        <label for="comment">Add a Comment: </label>
+        <label htmlFor="comment">Add a Comment: </label>
         <input id="comment" type="text" {...props} ref={c => this.input = c}/>
         <div className="border"></div>
       </div>
