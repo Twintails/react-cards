@@ -13,10 +13,12 @@ body {
 body {
   background-color: darken($warm-gray, 6%);
   color: $warm-white;
+  display: flex;
+  justify-content: center;
 }
 
 #mount {
-  height: 100%;
+  display: block;
 }
 
 .m-button {
