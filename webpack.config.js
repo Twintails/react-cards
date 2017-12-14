@@ -32,13 +32,25 @@ function createConfig(isDebug) {
   const rules = {
     js:     {test: /\.jsx?$/, loader: "babel-loader", exclude: /node_modules/ },
     eslint: {test: /\.jsx?$/, loader: "eslint-loader", exclude: /node_modules/ },
-    css:    {test: /\.css$/, use: ["style-loader","css-loader?sourceMap-loader"], exclude: /node_modules/ },
-    sass:   {test: /\.scss$/, use: ["style-loader","css-loader?sourceMap-loader","sass-loader?sourceMap-loader"], exclude: /node_modules/ },
+    css:    {
+      test: /\.css$/, use: [
+        { loader: 'style-loader', options: { singleton: true, sourceMap: true }},
+        // { loader: 'file-loader' },
+        { loader: "css-loader", options: { sourceMap: true }}
+      ],
+      exclude: /node_modules/ },
+    sass:   {
+      test: /\.scss$/, use: [
+        { loader: 'style-loader', options: { singleton: true, sourceMap: true }},
+        // { loader: 'file-loader' },
+        { loader: "css-loader", options: { sourceMap: true }},
+        { loader: "sass-loader", options: { sourceMap: true }}
+      ], exclude: /node_modules/ },
     files:  { test:/\.(tif|tiff|png|jpg|jpeg|gif|woff|ttf|eot|svg|woff2)(\?\S*)?$/, loader: "url-loader?limit=5000"}
   }
 
   const clientEntry = ["babel-polyfill", "./src/client/client"]
-  let publicPath = "/build/"
+  let publicPath = "./build/"
 
   if (isDebug) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
@@ -69,12 +81,15 @@ function createConfig(isDebug) {
     rules.sass.use = extract_SCSS.extract({
       fallback: 'style-loader',
       //resolve-url-loader may be chained before sass-loader if necessary
-      use: [{
-        loader: "css-loader",
-        options: {
-          minimize: true
-        }
-      }, 'sass-loader']
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: true
+          }
+        },
+        'sass-loader'
+      ]
     })
   }
 

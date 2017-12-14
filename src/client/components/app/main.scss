@@ -71,4 +71,88 @@ header {
       }
     }
   }
+
+  > .dialogs {
+    @extend .br2;
+    align-content: center;
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: $zi-dialog;
+
+    > section {
+      @extend .br3;
+      @include raised;
+      font-size: .9em;
+      margin: auto;
+      max-width: 430px;
+      position: relative;
+
+      > header {
+        @extend .f3;
+        @extend .br3;
+        @extend .br--top;
+        font-weight: bold;
+        margin: 6px auto;
+        padding: 15px;
+        text-align: center;
+      }
+
+      > p {
+        padding: 10px;
+      }
+
+      > form {
+        padding: 0 10px;
+      }
+
+      > .c-dialog-close {
+        @extend .br3;
+        @extend .fa;
+        @extend .fa-times-circle-o;
+        border-radius: 6px;
+        height: 10mm;
+        position: absolute;
+        right: 1%;
+        top: 1%;
+        width: 10mm;
+
+        &:before {
+          color: darken($text-warm-white, 20%);
+          cursor: pointer;
+          font-size: 6mm;
+          height: 10mm;
+          position: absolute;
+          right: 0;
+          text-align: right;
+          top: 0;
+          width: 10mm;
+        }
+      }
+
+
+    }
+  }
+
+  &.dialogs-open {
+    >.dialogs {
+      display: flex;
+    }
+
+    &:after {
+      backdrop-filter: blur(3px);
+      background: transparentize($color-background, .4);
+      content: ' ';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: $zi-dialog-backdrop;
+    }
+  }
 }

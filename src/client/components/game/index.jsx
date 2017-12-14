@@ -1,8 +1,9 @@
 import "./game.scss"
 
-import React, { Component } from "react"
+import React from "react"
+import { ContainerBase } from "../../lib/component"
 
-class GameContainer extends Component {
+class GameContainer extends ContainerBase {
   constructor(props) {
     super(props)
   }
@@ -13,7 +14,7 @@ class GameContainer extends Component {
   }
 }
 
-class GameSidebar extends Component {
+class GameSidebar extends ContainerBase {
   constructor(props) {
     super(props)
   }

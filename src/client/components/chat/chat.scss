@@ -1,54 +1,53 @@
 @import '../../variables';
 @import '../../mixins';
 
-$author-width: 7em;
+$author-width: 5.5em;
 
 .c-chat {
   @include section;
+  backdrop-filter: blur(3px) brightness(18%);
+  background-image: url('/img/wine-cork.png');
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  font-size: 1.3rem;
+  line-height: 1.3em;
   position: relative;
-
-  &::after {
-    background: lighten($primary, .05%);
-    border-right: 2px solid lighten($primary, 15%);
-    content: ' ';
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: $author-width;
-    z-index: 0;
-  }
 
   > .messages {
     @include unlistify;
     flex-grow: 1;
     overflow-y: scroll;
     position: relative;
-    z-index: 100;
+    z-index: $zi-chat;
 
     > li {
       display: flex;
-      line-height: 2em;
+
+      &:first-of-type {
+        > .author, > .message {
+          padding-top: .5em;
+        }
+      }
 
       .author {
-        align-self: center;
+        background: lighten($primary, .05%);
+        border-right: 2px solid lighten($primary, 15%);
         box-sizing: border-box;
+        min-width: $author-width;
         padding-right: 5px;
         text-align: right;
-        width: $author-width;
       }
 
       .message {
+        margin-bottom: 1.33em;
         padding-left: 5px;
       }
     }
   }
 
   > form {
-    z-index: 100;
+    z-index: $zi-chat;
 
     .m-textbox {
       background: $color-background;

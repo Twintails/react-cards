@@ -37,13 +37,15 @@
     }
 
     .players {
+      backdrop-filter: blur(2px);
       flex-grow: 1;
       overflow: hidden;
       padding: 0 10px;
     }
 
     .join-game {
-      color: $color-primary;
+      backdrop-filter: blur(2px);
+      color: darken($color-primary, 6%);
       font-weight: bold;
       padding: 5px;
       text-align: center;

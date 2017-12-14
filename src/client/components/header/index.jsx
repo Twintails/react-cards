@@ -1,11 +1,13 @@
 import "./header.scss"
 
-import React, { Component } from "react"
+import React from "react"
+import { ContainerBase } from "../../lib/component"
+
 import ReactSVG from 'react-svg';
 
 // const Cow = require('./cow.svg')
 
-class Header extends Component {
+class Header extends ContainerBase {
   constructor (props) {
     super (props)
     this._click = this._click.bind(this)
@@ -23,12 +25,12 @@ class Header extends Component {
     return (
       <header>
         <ReactSVG
-          path="./cow.svg"
+          path="/img/cow.svg"
           className="icon"
           id="cow"
         />
-        <h1>Cow Houses are Colorful in Green!</h1>
-        <button className="login" onClick={this._click}>Login</button>
+        <h1>Cow Houses</h1>
+        {/* <button className="login" onClick={this._click}>Login</button> */}
       </header>
     )
   }

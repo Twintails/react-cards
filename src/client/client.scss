@@ -1,5 +1,3 @@
-$fa-font-path: '~font-awesome/fonts';
-@import '~font-awesome/scss/font-awesome';
 @import 'variables';
 @import 'mixins';
 
@@ -11,57 +9,73 @@ body {
 }
 
 body {
-  background-color: darken($warm-gray, 6%);
+  background-color: darken($primary, 6%);
+  background-image: url('/img/tileable-wood.png');
+  background-size: 100%;
   color: $warm-white;
   display: flex;
+  font-family: $sans-serif;
   justify-content: center;
 }
 
-#mount {
+#mount { // sass-lint:disable-line no-ids
   display: block;
 }
 
 .m-button {
-  background: $color-neutral;
-  border: 0;
-  border-radius: $radius;
-  box-sizing: border-box;
-  color: $color-neutral-text;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  outline: 0;
-  padding: 5px 8px;
-  text-align: left;
-  text-decoration: 0;
-  transition: background 700ms $default-cubic;
+  @extend .link;
+  @extend .br2;
+  @extend .ph3;
+  @extend .pv2;
+  @extend .mb2;
+  @extend .dib;
+  @extend .white;
 
-  &[disabled],
-  &[disabled]:hover {
-    background: lighten($color-neutral, 5%);
-    color: lighten($color-neutral-text, 50%);
-    cursor: default;
-  }
+  //background: $color-neutral;
+  //border: 0;
+  //border-radius: $radius;
+  //box-sizing: border-box;
+  //color: $color-neutral-text;
+  cursor: pointer;
+  //display: inline-block;
+  //margin: 0;
+  //outline: 0;
+  //padding: 5px 8px;
+  //text-align: left;
+  //text-decoration: 0;
+  transition: background 700ms $default-cubic;
 
   &:hover {
     background: darken($color-neutral, 10%);
   }
 
   &.primary {
-    background: $color-primary;
-    color: $color-primary-text;
+    @extend .bg-dark-blue;
+    @extend .white;
+    @extend .b--blue;
+    //background: $color-primary;
+    //color: $color-primary-text;
 
     &:hover {
-      background: lighten($color-primary, 10%);
+      @extend .bg-blue;
     }
   }
 
   &.good {
-    background: $color-good;
-    color: $color-good-text;
+    @extend .bg-dark-green;
+    @extend .white;
+    @extend .b--green;
 
     &:hover {
       background: lighten($color-good, 10%);
     }
+  }
+
+  &[disabled],
+  &[disabled]:hover { // sass-lint:disable-line force-pseudo-nesting
+    @extend .b--black-30;
+    background: lighten($color-neutral, 5%);
+    color: lighten($color-neutral-text, 50%);
+    cursor: default;
   }
 }

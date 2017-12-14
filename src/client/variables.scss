@@ -1,3 +1,6 @@
+$fa-font-path: '~font-awesome/fonts';
+@import '~font-awesome/scss/font-awesome';
+@import '~tachyons-sass/tachyons';
 // Coolors Exported Palette - coolors.co/157f1f-e63946-2e5381-fffbf2-2e2021
 // 157F1F E63946 2E5381 FFFBF2 2E2021
 // HSL
@@ -6,14 +9,18 @@ $color2: #e63946; // hsla(355%, 78%, 56%, 1);
 $color3: #2e5381; // hsla(213%, 47%, 34%, 1);
 $color4: #fffbf2; // hsla(42%, 100%, 97%, 1);
 $color5: #2e2021; // hsla(356%, 18%, 15%, 1);
+$color6: #020038;
+$color7: #cbc3b0;
 
 $blue: $color3;
 $green: $color1;
 $red: $color2;
 $warm-white: $color4;
+$text-warm-white: $color7;
 $black: #111;
 $warm-gray: $color5;
-$primary: $warm-gray;
+$primary: darken($color3, 7%);
+$primary: lighten($color6, 5%);
 
 $transparent: rgba(0, 0, 0, .1);
 $shade: rgba(0, 0, 0, .2);
@@ -44,10 +51,40 @@ $color-neutral-text: $black;
 $color-text: darken($prime-white, 60%);
 $color-section-border: #c2c2c2;
 
-$color-raised: darken($warm-white, 5%);
+$color-raised: transparentize(lighten($color-primary, 40%), .2);
 
 $width-card: 160px;
 $height-card: 170px;
 $card-scale-factor: .8;
 
 $header-font-size: 14px;
+
+
+
+// fonts
+
+$sans-serif: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+
+
+// Z-Indicies
+
+$zi-chat: 100;
+$zi-controls: 1;
+
+$zi-dialog: 1650;
+$zi-dialog-backdrop: 1600;
+
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+}

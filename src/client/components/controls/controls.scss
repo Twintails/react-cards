@@ -9,7 +9,7 @@
   }
 
   input {
-    background: $warm-gray;
+    background: $primary;
     border: 0;
     border-bottom: 1px solid $glow;
     border-radius: $radius;
@@ -49,7 +49,7 @@
       position: absolute;
       transition: width 400ms ease;
       width: 0;
-      z-index: 1;
+      z-index: $zi-controls;
     }
 
     &::before { left: 50%; }

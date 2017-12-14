@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang="en")
   head
     title cards
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
@@ -14,3 +14,7 @@ html
         p Zoom!
     script(src=scriptRoot + "vendor.js")
     script(src=scriptRoot + "app.js")
+    script#__bs_script__.
+      //<![CDATA[
+      document.write("<script async src='//HOST:3000/browser-sync/browser-sync-client.js?v=2.18.13'><\/script>".replace("HOST", location.hostname));
+      //]]>

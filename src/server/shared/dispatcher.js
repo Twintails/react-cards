@@ -66,11 +66,11 @@ export class Dispatcher {
     return this.on$(whatItIs).filter(action => action.status === A.STATUS_REQUEST)
   }
 
-  onFail$(typeOrCallbacks, callback = null) {
+  onFail$(whatItIs) {
     return this.on$(whatItIs).filter(action => action.status === A.STATUS_FAIL)
   }
 
-  onSuccess$(typeOrCallbacks, callback = null) {
+  onSuccess$(whatItIs) {
     return this.on$(whatItIs).filter(action => action.status === A.STATUS_SUCCESS)
   }
 

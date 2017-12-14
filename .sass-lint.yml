@@ -12,12 +12,11 @@
 # Linter PropertySortOrder, option "separate_groups"
 # Linter SpaceBeforeBrace, option "allow_single_line_padding"
 # Linter VendorPrefix, option "identifier_list"
-
-files:
-  include: '**/*.scss'
 options:
   formatter: stylish
   merge-default-rules: false
+files:
+  include: '**/*.s+(a|c)ss'
 rules:
   bem-depth:
     - 0
@@ -99,7 +98,7 @@ rules:
     - 1
     - additional-identifiers: []
       excluded-identifiers: []
-  placeholder-in-extend: 1
+  placeholder-in-extend: 0
   placeholder-name-format:
     - 1
     - convention: hyphenatedlowercase

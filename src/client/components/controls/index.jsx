@@ -1,7 +1,9 @@
 import "./controls.scss"
-import React, { Component } from 'react'
+import React from 'react'
+import { ContainerBase } from "../../lib/component"
 
-export class TextInput extends Component {
+
+export class TextInput extends ContainerBase {
   constructor(props) {
     super(props)
   }

@@ -1,8 +1,11 @@
 import "./chat.scss"
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
+import { ContainerBase } from "../../lib/component"
+
+import PropTypes from 'prop-types'
 import { TextInput } from "../controls"
 
-export default class Chat extends Component {
+export default class Chat extends ContainerBase {
   constructor(props) {
     super(props)
 
@@ -34,9 +37,9 @@ export default class Chat extends Component {
   }
 
   static propTypes = {
-    // messages: PropTypes.array.isRequired,
-    // opSendMessage: PropTypes.object.isRequired,
-    // sendMessage: PropTypes.func.isRequired
+    messages: PropTypes.array.isRequired,
+    opSendMessage: PropTypes.object.isRequired,
+    sendMessage: PropTypes.func.isRequired
   }
 
   render() {
