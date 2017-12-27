@@ -1,4 +1,4 @@
-import url from "./client.scss"
+import url from "./client.scss" // eslint-disable-line no-unused-vars
 
 import _ from "lodash"
 import React from "react"

@@ -19,10 +19,16 @@ class LoginDialog extends ContainerBase {
       this.request(A.userLogin(this._username.value))
     }
 
-    this.state = {
-      opLogin: { can: true, inProgress: false }
-    }
+  }
 
+  componentWillMount() {
+    const {stores: {user}} = this.context
+    console.log({user})
+    this.subscribe(user.opLogin$, opLogin => this.setState({opLogin}))
+    this.subscribe(user.details$, details => {
+      if (details.isLoggedIn)
+        this.dispatch(A.dialogSet(A.DIALOG_LOGIN, false))
+    })
   }
 
   render() {

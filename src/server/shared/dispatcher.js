@@ -29,7 +29,7 @@ export class Dispatcher {
     if (!this._handlers.hasOwnProperty(whatItIs))
       this._handlers[whatItIs] = [handler]
     else
-      this._handlres[whatItIs].push(handler)
+      this._handlers[whatItIs].push(handler)
 
     return () => {
       const handlers = this._handlers[whatItIs]
@@ -105,7 +105,7 @@ export class Dispatcher {
   }
 
   fail(action, error) {
-    this.emia(A.fail(action, error))
+    this.emit(A.fail(action, error))
   }
 
   succeed(action) {
