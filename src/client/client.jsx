@@ -61,7 +61,7 @@ renderRoutes()
 function printAction (action) {
   if (action.hasOwnProperty("status")) {
     let style = null
-    switch (action.ststus) {
+    switch (action.status) {
       case A.STATUS_REQUEST: style = "color: blue"
         break
       case A.STATUS_FAIL: style = "color: red"
@@ -70,7 +70,7 @@ function printAction (action) {
         break
     }
 
-    console.log(`%c${action.type}`,`${style}; font-weight: bold; background: #eee; width: 100%; display: block;`)
+    console.log(`%c${action.status}: ${action.type}`,`${style}; font-weight: bold; background: #eee; width: 100%; display: block;`)
   } else {
     console.log(`%c${action.type}`,"background: #ddd;")
   }
