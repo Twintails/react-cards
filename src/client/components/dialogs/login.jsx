@@ -23,12 +23,15 @@ class LoginDialog extends ContainerBase {
 
   componentWillMount() {
     const {stores: {user}} = this.context
-    console.log({user})
     this.subscribe(user.opLogin$, opLogin => this.setState({opLogin}))
     this.subscribe(user.details$, details => {
       if (details.isLoggedIn)
         this.dispatch(A.dialogSet(A.DIALOG_LOGIN, false))
     })
+  }
+
+  componentDidMount() {
+    this._username.input.focus()
   }
 
   render() {
