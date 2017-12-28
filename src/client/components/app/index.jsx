@@ -3,10 +3,12 @@ import Header from "../header/"
 
 import React from "react"
 import {
-  Route
+  Route,
+  withRouter
 //   // Link
 } from 'react-router-dom'
 import { ContainerBase } from "../../lib/component"
+import * as A from "../../actions"
 import dialogTypes from "../dialogs"
 
 class AppContainer extends ContainerBase {
@@ -16,8 +18,30 @@ class AppContainer extends ContainerBase {
   }
 
   componentWillMount () {
-    const {stores: {app}} = this.context
+    const {stores: {app}, services: {dispatcher}} = this.context
+    const router = this.props
+    console.log("APP ROUTER",  router)
     this.subscribe(app.dialogs$, dialogs => this.setState({dialogs}))
+
+    this.subscribe(
+      dispatcher.onSuccess$(A.GAME_JOIN),
+      action => {
+        const path = `/game/${action.gameId}`
+        if (router.location.pathname === path)
+          return
+
+        router.history.push(path)
+      }
+    )
+    this.subscribe(
+      dispatcher.onSuccess$(A.LOBBY_JOIN),
+      () => {
+        if (router.location.pathname === "/")
+          return
+
+        router.history.push("/lobby")
+      }
+    )
   }
 
   _click (e) {
