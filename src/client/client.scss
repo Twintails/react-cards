@@ -30,6 +30,7 @@ body {
   @extend .pv2;
   @extend .mb2;
   @extend .dib;
+  @extend .bg-purple;
   @extend .white;
 
   //background: $color-neutral;
@@ -47,7 +48,7 @@ body {
   transition: background 700ms $default-cubic;
 
   &:hover {
-    background: darken($color-neutral, 10%);
+    @extend .bg-dark-red;
   }
 
   &.primary {

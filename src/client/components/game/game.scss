@@ -1,0 +1,53 @@
+@import "../../variables";
+@import "../../mixins";
+
+.c-game-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+}
+
+.c-player-list {
+  @include unlistify;
+  border-top: 1px solid $color-section-border;
+  flex: 1 0 auto;
+  overflow-y: auto;
+  position: relative;
+
+  > li {
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid $color-section-border;
+    display: flex;
+    padding: 5px 10px;
+    transition: background 500ms cubic-bezier(.075, .82, .165, 1);
+
+    .details {
+      flex-grow: 1;
+
+      .name {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    }
+
+    .status {
+      align-self: center;
+    }
+
+    &.is-czar .status {
+      font-weight: bold;
+    }
+
+    &.is-playing .status {
+      font-style: italic;
+    }
+
+    &.is-winner {
+      background: $color-good;
+      border: 0;
+      color: $color-good-text;
+      margin-bottom: 1px;
+    }
+  }
+}

@@ -44,7 +44,7 @@ header {
     & > .sidebar {
       @include section;
       display: flex;
-      flex: none;
+      flex-grow: 1;
       flex-direction: column;
       width: 200px;
 
