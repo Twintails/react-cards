@@ -43,6 +43,7 @@ export default class LobbyStore {
         }
 
         // TODO: Send to Socket
+        dispatcher.succeed(action)
       }
     })
 
