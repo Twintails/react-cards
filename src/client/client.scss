@@ -83,5 +83,9 @@ body {
 }
 
 .error {
-  color: $red;
+  @extend .dark-red;
+  @extend .bg-washed-red;
+  @extend .br2;
+  @extend .ba;
+
 }
