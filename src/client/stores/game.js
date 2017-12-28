@@ -19,6 +19,18 @@ const defaultView  = {
     {id: 3, name: "Betszy", score: 1, isCzar: true, isPlaying: false, isWinner: false},
     {id: 4, name: "Monito", score: 1, isCzar: false, isPlaying: false, isWinner: false}
   ],
+  messages: [
+    {index: 1, name: "Human", message: "Cow Houses are RED!"},{index: 2, name: "Chicken", message: "Cow Houses are white!"},
+    {index: 3, name: "Goat", message: "Cow Houses are green! Green! Greeeeeen! GREEEEEEEEN! GUH-REEEN! Green! Cowh Houses are Green! Thank you!"},{index: 4, name: "Cow", message: "Cow Houses are RED!"},
+    {index: 5, name: "Sheep", message: "Cow Houses are white!"},{index: 6, name: "Human", message: "Cow Houses are RED!"},
+    {index: 7, name: "Chicken", message: "Cow Houses are white!"},{index: 8, name: "Goat", message: "Cow Houses are green!"},
+    {index: 9, name: "Cow", message: "Cow Houses are RED!"},{index: 10, name: "Sheep", message: "Cow Houses are white!"},
+    {index: 11, name: "Human", message: "Cow Houses are RED!"},{index: 12, name: "Chicken", message: "Cow Houses are white!"},
+    {index: 13, name: "Goat", message: "Cow Houses are green!"},{index: 14, name: "Cow", message: "Cow Houses are RED!"},
+    {index: 15, name: "Sheep", message: "Cow Houses are white!"},{index: 16, name: "Human", message: "Cow Houses are RED!"},
+    {index: 17, name: "Chicken", message: "Cow Houses are white!"},{index: 18, name: "Goat", message: "Cow Houses are green!"},
+    {index: 19, name: "Cow", message: "Cow Houses are RED!"},{index: 20, name: "Sheep", message: "Cow Houses are white!"}
+  ],
   round: null,
   timer: null
 }
