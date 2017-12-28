@@ -1,6 +1,23 @@
 @import "../../variables";
 @import "../../mixins";
 
+.c-game {
+  display: flex;
+  flex-direction: column;
+
+  .notice {
+    display: flex;
+    flex-grow: 1;
+    font-weight: bold;
+
+    p {
+      align-self: center;
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+}
+
 .c-game-sidebar {
   display: flex;
   flex-direction: column;
