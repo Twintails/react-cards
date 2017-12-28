@@ -14,55 +14,27 @@ class LobbyContainer extends ContainerBase {
   constructor(props) {
     super(props)
 
-    this._joinGame = (game) => {
-      // console.log("GAME: ", game)
-      // console.log(`TODO: JOIN GAME ${game.title}`)
-      return (`TODO: JOIN GAME ${game.title}`)
-    }
+    this._joinGame = (game) => this.request(A.gameJoin(game.id))
 
-    this._sendMessage = (message) => {
-      // console.log(`Sending: ${message}`)
-      return (`Sending: ${message}`)
-    }
+    this._sendMessage = (message) => this.request(A.lobbySendMessage(message))
+  }
+
+  componentWillMount() {
+    const {stores: {lobby}} = this.context
+    this.subscribe(lobby.opSendMessage$, opSendMessage => this.setState({opSendMessage}))
+    this.subscribe(lobby.view$, lobby => this.setState({lobby}))
   }
 
   render() {
-    const games = [
-      {title: "Game 1", id: 1, players: ["Jimbo", "Lydia", "Horace"]},
-      {title: "Game 2", id: 2, players: ["George", "Marci", "Tannon"]},
-      {title: "Game 3", id: 3, players: ["Valora", "Bezy", "Monito"]},
-      {title: "Game 4", id: 4, players: ["Carci", "Vancho", "Paltio"]},
-      {title: "Game 5", id: 5, players: ["Gamma", "Phi", "Zelto"]},
-    ]
-
-    const opSendMessage = { can: true, inProgress: false }
-    const messages = [
-      {index: 1, name: "Human", message: "Cow Houses are RED!"},
-      {index: 2, name: "Chicken", message: "Cow Houses are white!"},
-      {index: 3, name: "Goat", message: "Cow Houses are green! Green! Greeeeeen! GREEEEEEEEN! GUH-REEEN! Green! Cowh Houses are Green! Thank you!"},
-      {index: 4, name: "Cow", message: "Cow Houses are RED!"},
-      {index: 5, name: "Sheep", message: "Cow Houses are white!"},
-      {index: 6, name: "Human", message: "Cow Houses are RED!"},
-      {index: 7, name: "Chicken", message: "Cow Houses are white!"},
-      {index: 8, name: "Goat", message: "Cow Houses are green!"},
-      {index: 9, name: "Cow", message: "Cow Houses are RED!"},
-      {index: 10, name: "Sheep", message: "Cow Houses are white!"},
-      {index: 11, name: "Human", message: "Cow Houses are RED!"},
-      {index: 12, name: "Chicken", message: "Cow Houses are white!"},
-      {index: 13, name: "Goat", message: "Cow Houses are green!"},
-      {index: 14, name: "Cow", message: "Cow Houses are RED!"},
-      {index: 15, name: "Sheep", message: "Cow Houses are white!"},
-      {index: 16, name: "Human", message: "Cow Houses are RED!"},
-      {index: 17, name: "Chicken", message: "Cow Houses are white!"},
-      {index: 18, name: "Goat", message: "Cow Houses are green!"},
-      {index: 19, name: "Cow", message: "Cow Houses are RED!"},
-      {index: 20, name: "Sheep", message: "Cow Houses are white!"}
-    ]
+    const {lobby: {games, messages}, opSendMessage} = this.state
 
     return (
       <div className="main c-lobby">
         <GameList games={games} joinGame={this._joinGame}/>
-        <Chat opSendMessage={opSendMessage} sendMessage={this._sendMessage} messages={messages}/>
+        <Chat
+          opSendMessage={opSendMessage}
+          sendMessage={this._sendMessage}
+          messages={messages}/>
       </div>
     )
   }
@@ -77,28 +49,30 @@ class LobbySidebar extends ContainerBase {
   constructor(props) {
     super(props)
 
-    this._login = () => {
-      this.dispatch(A.dialogSet(A.DIALOG_LOGIN, true))
-    }
+    this._login = () => this.dispatch(A.dialogSet(A.DIALOG_LOGIN, true))
 
-    this._createGame = () => {
-      // console.log("TODO: Create Game")
-    }
+    this._createGame = () => this.dispatch(A.gameCreate())
 
-    this._createGameInProgress = () => {
-      // console.log("TODO: Create Game")
-      return
-    }
+    // this._createGameInProgress = () => {
+    //   // console.log("TODO: Create Game")
+    //   return
+    // }
   }
+
+  componentWillMount() {
+    const {stores: {user, game}} = this.context
+    this.subscribe(user.opLogin$, opLogin => this.setState({opLogin}))
+    this.subscribe(game.opCreateGame$, opCreateGame => this.setState({opCreateGame}))
+  }
+
   render() {
-    const canLogin = true
-    const canCreateGame = true
+    const {opLogin, opCreateGame} = this.state
     return (
       <section className="sidebar c-lobby-sidebar">
         <div className="m-sidebar-buttons">
-          {!canLogin ? null : <button className="m-button primary" onClick={this._login}>Login</button>}
-          {!canCreateGame ? null :
-            <button className="m-button good" onClick={this._createGame} disabled={!this._createGameInProgress || "disabled"}>Create Game
+          {!opLogin.can ? null : <button className="m-button primary" onClick={this._login}>Login</button>}
+          {!opCreateGame.can ? null :
+            <button className="m-button good" onClick={this._createGame} disabled={opCreateGame.inProgress || "disabled"}>Create Game
             </button>}
         </div>
       </section>
