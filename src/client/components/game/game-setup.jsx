@@ -24,7 +24,7 @@ export default class GameSetup extends ContainerBase {
     this._toggleSet = (set) => {
       const {opSetOptions, game: {options, id}} = this.state
 
-      const newSets = set.isSelected
+      const newCardSets = set.isSelected
         ? options.cardSets.filter(setId => setId != set.id)
         : options.cardSets.concat(set.id)
 
@@ -34,7 +34,7 @@ export default class GameSetup extends ContainerBase {
 
       this.request(A.gameSetOptions(id, {
         ...options,
-        sets: newSets
+        cardSets: newCardSets
       }))
     }
 
