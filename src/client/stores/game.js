@@ -8,10 +8,15 @@ import * as A from "../actions"
 const defaultView  = {
   id: 42,
   title: "Horace's Game",
-  step: A.STEP_DISPOSED,
+  step: A.STEP_SETUP,
   options: {
     scoreLimit: 5,
-    sets: ["1ed"]
+    cardSets: [
+      {id: "starter", name: "Starter Pack"},
+      {id: "red", name: "Red Box"},
+      {id: "blue", name: "Blue Box"},
+      {id: "green", name: "Green Box"},
+    ]
   },
   players: [
     {id: 1, name: "Horace", score: 4, isCzar: false, isPlaying: false, isWinner: true},

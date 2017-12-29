@@ -1,0 +1,58 @@
+@import "../../variables";
+@import "../../mixins";
+
+.c-game-setup {
+  @include section;
+  flex-grow: 1;
+  margin-bottom: 10px;
+
+  > header .error {
+    display: block;
+    float: right;
+  }
+
+  .form-row {
+    display: flex;
+    margin: 10px 0;
+
+    label {
+      align-self: center;
+      flex: none;
+      padding-right: 10px;
+      text-align: right;
+      width: 100px;
+    }
+  }
+
+  .sets-list{
+    @include unlistify;
+
+    > li {
+      @include user-select-none;
+      border: 2px solid $color-section-border;
+      border-radius: 4px;
+      cursor: default;
+      display: inline-block;
+      margin: 0 5px 5px 0;
+      padding: 2px 5px;
+      transition: border-color $default-transition;
+
+      &.is-selected {
+        border-color: $color-primary;
+      }
+    }
+  }
+
+  .start-game {
+    text-align: center;
+    width: 100%;
+  }
+
+  &.enabled .sets-list > li {
+    cursor: pointer;
+
+    &:hover {
+      border-color: lighten($color-primary, 15%);
+    }
+  }
+}

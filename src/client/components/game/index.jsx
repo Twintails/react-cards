@@ -18,7 +18,6 @@ class GameContainer extends ContainerBase {
   componentWillMount() {
     const {stores: {app, game}} = this.context
     const {params} = this.props.match
-    console.log(this.props)
     const gameId = parseInt(params.gameId)
 
     this.subscribe(game.opJoinGame$, opJoinGame => this.setState({opJoinGame}))

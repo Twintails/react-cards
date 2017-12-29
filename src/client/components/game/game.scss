@@ -1,6 +1,7 @@
 @import "../../variables";
 @import "../../mixins";
 
+
 .c-game {
   display: flex;
   flex-direction: column;
@@ -15,6 +16,11 @@
       flex-grow: 1;
       text-align: center;
     }
+  }
+
+  .c-chat {
+    flex: none;
+    height: 200px;
   }
 }
 
