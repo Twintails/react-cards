@@ -3,8 +3,7 @@ import Header from "../header/"
 
 import React from "react"
 import {
-  Route,
-  withRouter
+  Route
 //   // Link
 } from 'react-router-dom'
 import { ContainerBase } from "../../lib/component"
@@ -20,7 +19,6 @@ class AppContainer extends ContainerBase {
   componentWillMount () {
     const {stores: {app}, services: {dispatcher}} = this.context
     const router = this.props
-    console.log("APP ROUTER",  router)
     this.subscribe(app.dialogs$, dialogs => this.setState({dialogs}))
 
     this.subscribe(
