@@ -71,7 +71,7 @@ export default class GameBoard extends ContainerBase {
     return (
       <section className="c-game-board">
         <div className="black-card">
-          <Card type="black" card={round.blackCard} />
+          <Card type="bg-black" card={round.blackCard} />
           <div className={`game-status ${messageIsActive} ? "is-active" : ""`}>{message}</div>
         </div>
         <Stacks
