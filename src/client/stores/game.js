@@ -6,9 +6,9 @@ import { mapOp$ } from "../../server/shared/observable"
 import * as A from "../actions"
 
 const defaultView  = {
-  id: 42,
+  id: 2,
   title: "Horace's Game",
-  step: A.STEP_SETUP,
+  step: A.STEP_CHOOSE_WHITES,
   options: {
     scoreLimit: 5,
     cardSets: [
@@ -19,40 +19,65 @@ const defaultView  = {
     ]
   },
   players: [
-    {id: 1, name: "Horace", score: 4, isCzar: false, isPlaying: false, isWinner: true},
-    {id: 2, name: "Valora", score: 2, isCzar: false, isPlaying: true, isWinner: false},
+    {id: 1, name: "Horace", score: 4, isCzar: false, isPlaying: true, isWinner: false},
+    {id: 2, name: "Valora", score: 2, isCzar: false, isPlaying: false, isWinner: false},
     {id: 3, name: "Betszy", score: 1, isCzar: true, isPlaying: false, isWinner: false},
     {id: 4, name: "Monito", score: 1, isCzar: false, isPlaying: false, isWinner: false}
   ],
   messages: [
-    {index: 1, name: "Human", message: "Cow Houses are RED!"},{index: 2, name: "Chicken", message: "Cow Houses are white!"},
-    {index: 3, name: "Goat", message: "Cow Houses are green! Green! Greeeeeen! GREEEEEEEEN! GUH-REEEN! Green! Cowh Houses are Green! Thank you!"},{index: 4, name: "Cow", message: "Cow Houses are RED!"},
-    {index: 5, name: "Sheep", message: "Cow Houses are white!"},{index: 6, name: "Human", message: "Cow Houses are RED!"},
-    {index: 7, name: "Chicken", message: "Cow Houses are white!"},{index: 8, name: "Goat", message: "Cow Houses are green!"},
-    {index: 9, name: "Cow", message: "Cow Houses are RED!"},{index: 10, name: "Sheep", message: "Cow Houses are white!"},
-    {index: 11, name: "Human", message: "Cow Houses are RED!"},{index: 12, name: "Chicken", message: "Cow Houses are white!"},
-    {index: 13, name: "Goat", message: "Cow Houses are green!"},{index: 14, name: "Cow", message: "Cow Houses are RED!"},
-    {index: 15, name: "Sheep", message: "Cow Houses are white!"},{index: 16, name: "Human", message: "Cow Houses are RED!"},
-    {index: 17, name: "Chicken", message: "Cow Houses are white!"},{index: 18, name: "Goat", message: "Cow Houses are green!"},
-    {index: 19, name: "Cow", message: "Cow Houses are RED!"},{index: 20, name: "Sheep", message: "Cow Houses are white!"}
+    {index: 1, name: "Human", message: "Cow Houses are RED!"},
+    {index: 2, name: "Chicken", message: "Cow Houses are white!"},
+    {index: 3, name: "Goat", message: "Cow Houses are green! Green! GREEN! GUH-REEEN! Cow Houses are Green!"},
+    {index: 4, name: "Cow", message: "Cow Houses are RED!"}
   ],
-  round: null,
+  round: {
+    blackCard: {
+      id: 1,
+      text: "Does the green troll hold bridges?",
+      set: "starter",
+      whiteCardCount: 3
+    },
+    stacks: [
+      { id: 1, count: 3 },
+      { id: 2, count: 1 },
+      { id: 3, count: 2 }
+    ]
+  },
   timer: null
 }
 
 const defaultPlayerView = {
   id: 1,
-  hand: [],
-  stack: null
+  hand: [
+    {id: 2, text: "Fo Shizzle",      set: "starter"},
+    {id: 3, text: "with tongs",      set: "starter"},
+    {id: 4, text: "with meloncholy", set: "starter"},
+    {id: 6, text: "under duress",    set: "starter"},
+    {id: 7, text: "in ice skates",   set: "starter"},
+    {id: 8, text: "while pooping",   set: "starter"},
+    {id: 9, text: "on horseback",    set: "starter"}
+  ],
+  stack: {
+    id: 2,
+    cards: [
+      {id: 5, text: "while screaming", set: "starter"}
+    ]
+  }
 }
 
 export default class GameStore {
   constructor({dispatcher}, user) {
+    this.view$ = new BehaviorSubject(defaultView)
+    this.player$ = new BehaviorSubject(defaultPlayerView)
+
     const isLoggedIn$ = user.details$.map(d => d.isLoggedIn)
     const playerAndGame$ = Observable.combineLatest(this.view$, this.player$)
 
     dispatcher.onRequest({
-      [A.GAME_CREATE]:       action => { dispatcher.succeed(action); dispatcher.succeed(A.gameJoin(action.gameId)); },
+      [A.GAME_CREATE]:       action => {
+        dispatcher.succeed(action)
+        dispatcher.succeed(A.gameJoin(action.gameId))
+      },
       [A.GAME_JOIN]:         action => dispatcher.succeed(action),
       [A.GAME_SET_OPTIONS]:  action => dispatcher.succeed(action),
       [A.GAME_START]:        action => dispatcher.succeed(action),
@@ -73,11 +98,9 @@ export default class GameStore {
         // TODO: Send to Socket
         dispatcher.succeed(action)
       }
-
     })
 
-    this.view$ = new BehaviorSubject(defaultView)
-    this.player$ = new BehaviorSubject(defaultPlayerView)
+
 
     this.opCreateGame$ = mapOp$(
       dispatcher.on$(A.GAME_CREATE),

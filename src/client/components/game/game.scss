@@ -43,7 +43,7 @@
     border-bottom: 1px solid $color-section-border;
     display: flex;
     padding: 5px 10px;
-    transition: background 500ms cubic-bezier(.075, .82, .165, 1);
+    transition: background $default-transition;
 
     .details {
       flex-grow: 1;
