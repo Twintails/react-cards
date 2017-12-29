@@ -1,0 +1,95 @@
+@import '~tachyons-sass/tachyons';
+@import "../../variables";
+@import "../../mixins";
+
+.c-card {
+  @include user-select-none;
+
+  cursor: default;
+  display: inline-block;
+  height: $height-card;
+  position: relative;
+  width: $width-card;
+
+  .inner {
+    @extend .br2;
+
+    box-shadow: 2px 2px 3px $transparent;
+    box-sizing: border-box;
+    height: 100%;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    transition: box-shadow $default-transition;
+    width: 100%;
+  }
+
+  &.front {
+    font-size: 1.3rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    .set {
+      bottom: 5px;
+      font-size: .9rem;
+      left: 10px;
+      position: absolute;
+    }
+
+    .white-count {
+      bottom: 5px;
+      font-size: 1.2rem;
+      position: absolute;
+      right: 10px;
+
+      > span {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &.back {
+    font-size: 1.45rem;
+    font-weight: bold;
+  }
+
+  .is-selectable {
+    .inner {
+      box-shadow: 2px 2px 3px $transparent;
+      cursor: pointer;
+
+      &::active {
+        border: 2px solid $color-primary;
+        padding: 8px;
+
+        .set {
+          bottom: 3px;
+          left: 8px;
+        }
+      }
+    }
+  }
+
+  &.style-small {
+    height: ($height-card * $card-scale-factor);
+    width: ($width-card * $card-scale-factor);
+
+    .inner {
+      transform: scale(1);
+      transform-origin: center;
+      transition: transform $default-transition;
+    }
+
+    &.can-soom::hover {
+      overflow: visible;
+      z-index: $zi-game-card;
+
+      .inner {
+        box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+        transform: scale(1 / $card-scale-factor);
+        z-index: $zi-game-card;
+      }
+    }
+  }
+}

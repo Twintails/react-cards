@@ -20,9 +20,9 @@ const defaultView  = {
   },
   players: [
     {id: 1, name: "Horace", score: 4, isCzar: false, isPlaying: true, isWinner: false},
-    {id: 2, name: "Valora", score: 2, isCzar: false, isPlaying: false, isWinner: false},
+    {id: 2, name: "Valora", score: 2, isCzar: false, isPlaying: true, isWinner: false},
     {id: 3, name: "Betszy", score: 1, isCzar: true, isPlaying: false, isWinner: false},
-    {id: 4, name: "Monito", score: 1, isCzar: false, isPlaying: false, isWinner: false}
+    {id: 4, name: "Monito", score: 1, isCzar: false, isPlaying: true, isWinner: false}
   ],
   messages: [
     {index: 1, name: "Human", message: "Cow Houses are RED!"},
