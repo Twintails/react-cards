@@ -13,6 +13,9 @@
   width: $width-card;
 
   .inner {
+    @extend .bg-white;
+    @extend .br2;
+
     box-shadow: 2px 2px 3px $transparent;
     box-sizing: border-box;
     height: 100%;
@@ -80,14 +83,16 @@
       transition: transform $default-transition;
     }
 
-    &.can-soom::hover {
-      overflow: visible;
-      z-index: $zi-game-card;
-
-      .inner {
-        box-shadow: 0 0 10px rgba(0, 0, 0, .3);
-        transform: scale(1 / $card-scale-factor);
+    &.can-zoom {
+      &:hover {
+        overflow: visible;
         z-index: $zi-game-card;
+
+        .inner {
+          box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+          transform: scale(1 / $card-scale-factor);
+          z-index: $zi-game-card;
+        }
       }
     }
   }

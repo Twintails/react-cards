@@ -82,6 +82,14 @@ body {
   }
 }
 
+.bg-white {
+  @extend .black;
+}
+
+.bg-black {
+  color: $text-warm-white;
+}
+
 .error {
   @extend .dark-red;
   @extend .bg-washed-red;
