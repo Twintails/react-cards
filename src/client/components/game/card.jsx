@@ -11,7 +11,7 @@ export default function Card(props) {
     card ? "front" : "back",
     `style-${style}`,
     canZoom ? "can-zoom" : "",
-    isSelectable ? "i-selectable" : ""
+    isSelectable ? "is-selectable" : ""
   ]
 
   const click = () => {

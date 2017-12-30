@@ -1,0 +1,39 @@
+@import '~tachyons-sass/tachyons';
+@import '../../variables';
+@import '../../mixins';
+
+.c-stacks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 0 20px -5px;
+  min-height: 0;
+  overflow-y: auto;
+
+  > .stack {
+    @extend .br2;
+
+    margin: 5px;
+    padding: 5px;
+    transition: background $default-transition;
+
+    .c-card {
+      @extend .black;
+
+      margin-right: 5px;
+
+      &::last-child {
+        margin: 0;
+      }
+    }
+
+    &.our-stack {
+      background: darken($color-background, 20%);
+    }
+
+    &.is-winner {
+      background: $color-primary;
+      color: $color-primary-text;
+    }
+  }
+}

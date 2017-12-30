@@ -8,7 +8,7 @@ import * as A from "../actions"
 const defaultView  = {
   id: 2,
   title: "Horace's Game",
-  step: A.STEP_CHOOSE_WHITES,
+  step: A.STEP_JUDGE_STACKS,
   options: {
     scoreLimit: 5,
     cardSets: [
@@ -38,9 +38,9 @@ const defaultView  = {
       whiteCardCount: 3
     },
     stacks: [
-      { id: 1, count: 3 },
-      { id: 2, count: 1 },
-      { id: 3, count: 2 }
+      { id: 1, cards: [{id: 4, text: "with meloncholy", set: "starter"}] },
+      { id: 2, cards: [{id: 7, text: "in ice skates",   set: "starter"}] },
+      { id: 3, cards: [{id: 9, text: "on horseback",    set: "starter"}] }
     ]
   },
   timer: null
