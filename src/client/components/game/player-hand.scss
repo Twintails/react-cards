@@ -1,0 +1,47 @@
+@import '~tachyons-sass/tachyons';
+@import '../../variables';
+@import '../../mixins';
+
+.c-player-hand {
+  background: $color-background;
+  border-bottom: 2px solid $color-section-border;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  z-index: $zi-player-hand;
+
+  .title {
+    @extend .br2;
+    @extend .br--bottom;
+
+    @include divider;
+
+    cursor: pointer;
+
+    &::hover {
+      background: lighten($color-primary, 5%);
+    }
+  }
+
+  &.is-closed {
+    .cards {
+      display: none;
+    }
+  }
+
+  .cards {
+    border: 2px solid $color-section-border;
+    border-top: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    max-height: 310px;
+    overflow-y: auto;
+    padding: 5px;
+
+    > .c-card {
+      margin: 5px;
+    }
+  }
+}
