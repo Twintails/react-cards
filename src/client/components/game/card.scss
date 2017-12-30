@@ -1,8 +1,9 @@
 @import '~tachyons-sass/tachyons';
-@import "../../variables";
-@import "../../mixins";
+@import '../../variables';
+@import '../../mixins';
 
 .c-card {
+  @extend .br2;
   @include user-select-none;
 
   cursor: default;
@@ -12,8 +13,6 @@
   width: $width-card;
 
   .inner {
-    @extend .br2;
-
     box-shadow: 2px 2px 3px $transparent;
     box-sizing: border-box;
     height: 100%;
