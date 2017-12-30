@@ -78,7 +78,7 @@ export default class GameBoard extends ContainerBase {
           stacks={stacks}
           ourStackId={ourStackId}
           opSelectStack={opSelectStack}
-          selectStacks={this._selectStacks} />
+          selectStack={this._selectStack} />
         <PlayerHand
           opSelectCard={opSelectCard}
           selectCard={this._selectCard}
