@@ -1,0 +1,25 @@
+@import '~tachyons-sass/tachyons';
+@import '../../variables';
+@import '../../mixins';
+
+.c-game-board {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-bottom: 10px;
+  position: relative;
+
+  > .black-card {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+
+    .c-card {
+      margin-bottom: 10px;
+    }
+
+    .game-status {
+      @include divider;
+    }
+  }
+}
