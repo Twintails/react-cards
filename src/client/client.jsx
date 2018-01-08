@@ -4,6 +4,7 @@ import _ from "lodash"
 import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter as Router, Switch, Redirect} from 'react-router-dom'
+import io from "socket.io-client"
 
 import * as A from "./actions"
 import { Dispatcher } from "shared/dispatcher"
@@ -12,11 +13,14 @@ import createStores from "./stores"
 
 //SERVICES
 const dispatcher = new Dispatcher()
-const services = {dispatcher}
+const socket = io()
+const services = {dispatcher, socket}
 
 if (IS_DEVELOPMENT) {
   dispatcher.on("*", printAction)
 }
+
+socket.on("action", action => dispatcher.emit(action))
 
 //STORES
 const stores = createStores(services)

@@ -2,6 +2,7 @@ export const STATUS_REQUEST = "STATUS_REQUEST"
 export const STATUS_FAIL = "STATUS_FAIL"
 export const STATUS_SUCCESS = "STATUS_SUCCESS"
 
+// Helpers
 export function request(action) {
   return {...action, status: STATUS_REQUEST}
 }
@@ -13,6 +14,16 @@ export function fail(action, error) {
 export function succeed(action) {
   return {...action, status: STATUS_SUCCESS}
 }
+
+// Views
+export const MERGE_VIEW = "MERGE_VIEW"
+export const mergeView = (view, diff, id = undefined) => ({type: MERGE_VIEW, view, diff, id})
+export const setView = (view, data, id = undefined) => mergeView(view, {$set: data}, id)
+
+export const VIEW_APP = "VIEW_APP"
+export const VIEW_LOBBY = "VIEW_LOBBY"
+export const VIEW_GAME = "VIEW_GAME"
+export const VIEW_PLAYER = "VIEW_PLAYER"
 
 // User actions
 export const USER_LOGIN = "USER_LOGIN"
