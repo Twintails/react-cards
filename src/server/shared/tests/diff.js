@@ -105,6 +105,12 @@ function runDiffTests(tests) {
         it("diff", () => {
           expect(result).toEqual(diff)
         })
+        if (result != IS_UNCHANGED) {
+          it("merge", () => {
+            const mergedBack = mergeDiff(before, result)
+            expect(mergedBack).toEqual(after)
+          })
+        }
       })
     } else if (_.isObject(test)) {
       describe(`${key}:`, () => runDiffTests(test))
