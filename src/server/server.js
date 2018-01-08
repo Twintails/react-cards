@@ -2,9 +2,12 @@ import express from 'express'
 import http from 'http'
 import path from "path"
 import fs from "fs"
+import socketIo from "socket.io"
 
 import { isDevelopment } from './settings'
 import { CardDatabase } from "./models/cards"
+import { Client } from "./models/client"
+import { Application } from "./models/application"
 
 /*_________________________________________
 |
@@ -14,7 +17,7 @@ import { CardDatabase } from "./models/cards"
 
 const app = express()
 const server = new http.Server(app)
-
+const io = socketIo(server)
 
 /*_________________________________________
 |
@@ -49,7 +52,11 @@ for ( let file of fs.readdirSync(setsPath)) {
   cards.addSet(setId, JSON.parse(fs.readFileSync(setPath, "utf-8")))
 }
 
-console.log(cards.generateDecks()) // eslint-disable-line no-console
+const cardsApp = new Application(cards)
+
+
+// socket
+io.on("connection", socket => new Client(socket, cardsApp))
 
 
 /*_________________________________________
