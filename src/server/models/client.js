@@ -1,6 +1,8 @@
 import * as A from "../actions"
 import { Dispatcher } from "../shared/dispatcher"
 
+import { validateName } from "../shared/validation/user"
+
 export class Client extends Dispatcher {
   get details() {
     return {
@@ -33,12 +35,30 @@ export class Client extends Dispatcher {
     this._socket.emit("action", action)
   }
 
+  login(name) {
+    const validator = validateName(name)
+    if (validator.didFail)
+      return validator
+
+    this.isLoggedIn = true
+    this.name = name
+    this.emit(A.userDetailsSet(this.details))
+
+    return validator
+  }
+
   dispose() {
     this._onDisposes.forEach(a => a())
     this.onDisposes = []
   }
 
   _installHandlers(){
+    this.onRequest({
+      [A.USER_LOGIN]: (action) => {
+        const validator = this.login(action.name)
+        this.respond(action, validator)
+      }
+    })
 
   }
 }
