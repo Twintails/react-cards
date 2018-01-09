@@ -20,8 +20,8 @@ export class CardDatabase {
     this._sets = {}
   }
 
-  addSets(sets) {
-    _.forOwn(sets, (set, setName) => this.addSet(setName, set))
+  addSets(cardSets) {
+    _.forOwn(cardSets, (set, setName) => this.addSet(setName, set))
   }
 
   addSet(setName, set) {
@@ -43,14 +43,14 @@ export class CardDatabase {
   }
 
   generateDecks(setIds = null) {
-    const sets = setIds ? setIds.map(s => this._sets[s]) : _.values(this._sets)
-    if (!sets.length)
+    const cardSets = setIds ? setIds.map(s => this._sets[s]) : _.values(this._sets)
+    if (!cardSets.length)
       throw new Error("Cannot generate deck without any sets selected")
 
-    const whiteCards = _.flatMap(sets, s => s.whiteCards)
+    const whiteCards = _.flatMap(cardSets, s => s.whiteCards)
     shuffle(whiteCards)
 
-    const blackCards = _.flatMap(sets, s => s.blackCards)
+    const blackCards = _.flatMap(cardSets, s => s.blackCards)
     shuffle(blackCards)
 
     return new Deck(whiteCards, blackCards)

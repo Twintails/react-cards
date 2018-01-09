@@ -5,7 +5,7 @@ import { RoomBase } from "../lib/room"
 export class Application extends RoomBase {
   get view() {
     return {
-      sets: this.cards.sets
+      cardSets: this.cards.sets
     }
   }
 

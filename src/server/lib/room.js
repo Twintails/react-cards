@@ -18,7 +18,7 @@ export class RoomBase {
   addClient(client) {
     this.clients.push(client)
     client.emit(A.setView(this._viewId, this.view, this.id))
-    return () => _.remove(this.clients, {id: cleint.id})
+    return () => _.remove(this.clients, {id: client.id})
   }
 
   broadcast(action) {
