@@ -26,7 +26,6 @@ export function makeDiffArray(before, after, location = "") {
   }
 
   if(!after[0].hasOwnProperty("id")) {
-    const result = []
     let spliceBegin = -1
     let spliceAdd = []
 
