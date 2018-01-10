@@ -116,7 +116,7 @@ export class Dispatcher {
     if (validator.didFail)
       this.fail(action, validator.message)
     else
-      this.success(action)
+      this.succeed(action)
   }
 }
 
