@@ -5,7 +5,7 @@ import { RoomBase } from "../lib/room"
 export class Lobby extends RoomBase {
   get view() {
     return {
-      message: this.message.slice(),
+      messages: this.messages.slice(),
       games: this.games.map(game => ({
         id: game.id,
         title: game.title,
@@ -16,8 +16,8 @@ export class Lobby extends RoomBase {
 
   constructor(app) {
     super(A.VIEW_LOBBY)
-    this.message = []
-    this.game = []
+    this.messages = []
+    this.games = []
     this.app = app
 
     this._nextGameId = 1
@@ -29,7 +29,7 @@ export class Lobby extends RoomBase {
 
     this._tick(() => {
       this.messages.push({
-        index:this.message.length + 1,
+        index:this.messages.length + 1,
         name: client.name,
         message
       })
