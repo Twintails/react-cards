@@ -112,7 +112,9 @@ export function makeDiffObject(before, after, location = "") {
 
     seen[key] = true
     const value = after[key]
-    if (before === null || !before.hasOwnProperty(key)) {
+    console.log("BEFORE", before)
+
+    if (before === undefined || before === null || !before.hasOwnProperty(key)) {
       obj[key] = value
       changed = true
     } else {
