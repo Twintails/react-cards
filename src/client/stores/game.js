@@ -33,10 +33,7 @@ export default class GameStore {
     const playerAndGame$ = Observable.combineLatest(this.view$, this.player$)
 
     dispatcher.onRequest({
-      [A.GAME_CREATE]:       action => {
-        dispatcher.succeed(action)
-        dispatcher.succeed(A.gameJoin(action.gameId))
-      },
+      [A.GAME_CREATE]:       passThroughAction,
       [A.GAME_JOIN]:         passThroughAction,
       [A.GAME_SET_OPTIONS]:  passThroughAction,
       [A.GAME_START]:        passThroughAction,
