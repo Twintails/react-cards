@@ -44,15 +44,15 @@ export class Lobby extends RoomBase {
 
   createGame(title) {
     const game = new Game(this._nextGameId++, title, this.app)
-    this._tick(() => this.game.push(game))
+    this._tick(() => this.games.push(game))
     return game
   }
 
   removeGame(gameId) {
-    this._tick(() => _.remove(this.game, {id: gameId}))
+    this._tick(() => _.remove(this.games, {id: gameId}))
   }
 
   getGameById(gameId) {
-    return _.find(this.game, {id: gameId})
+    return _.find(this.games, {id: gameId})
   }
 }
