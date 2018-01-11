@@ -35,22 +35,24 @@ export class RoomBase {
     }
 
     this._inTick = true
-    if (action) {
-      try {
+
+    try {
+      if (action) {
         action()
-      } finally {
-        this._inTick = false
       }
+    } finally {
+      this._inTick = false
     }
 
+
     this._postTick()
-    const newView =  this.view
+    const newView = this.view
     const diff = makeDiff(this._lastView, newView)
 
     if (diff != IS_UNCHANGED)
       this.broadcast(A.mergeView(this._viewId, diff, this.id))
 
-    this._lastView =  newView
+    this._lastView = newView
     return diff
   }
 
