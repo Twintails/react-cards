@@ -100,7 +100,6 @@ export class Client extends Dispatcher {
           game = lobby.createGame(`${this.name}'s game'`)
           this.setHandlers(new GameHandlers(this, game))
           this.succeed(action)
-          console.log("GAME ID", game)
           this.succeed(A.gameJoin(game.id))
         } catch (e) {
           if (game)
@@ -109,8 +108,23 @@ export class Client extends Dispatcher {
           this.fail(action)
           throw e
         }
+      },
+
+      [A.GAME_JOIN]: (action) => {
+        if(this.handlers instanceof GameHandlers && this.handlers.game.id == action.gameId) {
+          this.succeed(action)
+          return
+        }
+
+        const game = lobby.getGameById(action.gameId)
+        if (!game) {
+          this.fail(action, "Invalid game")
+          return
+        }
+
+        this.setHandlers(new GameHandlers(this, game))
+        this.succeed(action)
       }
     })
-
   }
 }
