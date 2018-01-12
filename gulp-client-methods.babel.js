@@ -1,12 +1,5 @@
-// import gulp from 'gulp'
-// import path from 'path'
-// import { __Compile_Error, __createBS } from './gulp-shared-methods.babel'
-// import child_process from "child_process"
 import webpack from 'webpack'
 import webpackConfig from './webpack.config'
-import WebpackDevServer from 'webpack-dev-server'
-
-// const $g = require("gulp-load-plugins")()
 
 const consoleStats = {
   colors: true,
@@ -31,6 +24,8 @@ export function __Building_Client (cb) {
 }
 
 export function __Watching_Client () {
+
+  const WebpackDevServer = require("webpack-dev-server")
   const compiler = webpack(webpackConfig)
   const server = new WebpackDevServer(compiler, {
     publicPath: '/build/',
