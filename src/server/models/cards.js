@@ -12,7 +12,7 @@ function getWhiteCardCount(text) {
 }
 
 export class CardDatabase {
-  get sets() {
+  get cardSets() {
     return _.map(this._sets, set => ({id: set.id, name: set.name}))
   }
 

@@ -54,7 +54,7 @@ class LobbySidebar extends ContainerBase {
 
     this._login = () => this.dispatch(A.dialogSet(A.DIALOG_LOGIN, true))
 
-    this._createGame = () => this.dispatch(A.gameCreate())
+    this._createGame = () => this.request(A.gameCreate())
 
     // this._createGameInProgress = () => {
     //   // console.log("TODO: Create Game")
@@ -75,7 +75,7 @@ class LobbySidebar extends ContainerBase {
         <div className="m-sidebar-buttons">
           {!opLogin.can ? null : <button className="m-button primary" onClick={this._login}>Login</button>}
           {!opCreateGame.can ? null :
-            <button className="m-button good" onClick={this._createGame} disabled={opCreateGame.inProgress || "disabled"}>Create Game
+            <button className="m-button good" onClick={this._createGame} disabled={opCreateGame.inProgress}>Create Game
             </button>}
         </div>
       </section>
@@ -87,7 +87,7 @@ function GameList({games, joinGame}) {
   return (
     <section className="c-game-list">
       {games.length > 0 ? null : <div className="no-game">No Games availiable yet</div>}
-
+  
       {games.map(game =>
         <div className="game" key={game.id} onClick={() => joinGame(game)}>
           <div className="title">{game.title}</div>

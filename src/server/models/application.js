@@ -6,7 +6,7 @@ import { Lobby } from "./lobby"
 export class Application extends RoomBase {
   get view() {
     return {
-      cardSets: this.cards.sets
+      cardSets: this.cards.cardSets
     }
   }
 
