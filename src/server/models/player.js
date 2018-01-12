@@ -80,7 +80,7 @@ export class Player extends RoomBase {
 
   selectCard(cardId) {
     if (!this.stack)
-      return Validator.fail("You are no tin this round")
+      return Validator.fail("You are not in this round")
 
     const cardIndex = _.findIndex(this.hand, {id: cardId})
     if (cardIndex === -1)
