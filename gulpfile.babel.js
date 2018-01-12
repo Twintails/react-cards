@@ -67,7 +67,7 @@ gulp.task("client:clean", cb => {
   rimraf("./public/build", () => cb())
 })
 gulp.task(
-  "client:build",
+  "client:building",
   gulp.series(
     "client:clean",
     __Building_Client
@@ -81,3 +81,4 @@ gulp.task(
 
 // DEV TASKS
 gulp.task("dev", gulp.parallel("server:dev", "client:dev"))
+gulp.task("build", gulp.parallel("server:building", "client:building"));
