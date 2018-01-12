@@ -1,11 +1,10 @@
-@import '~tachyons-sass/tachyons';
 @import '../../variables';
 @import '../../mixins';
 
 .c-card {
-  @extend .br2;
   @include user-select-none;
 
+  border-radius: $radius;
   cursor: default;
   display: inline-block;
   height: $height-card;
@@ -13,9 +12,8 @@
   width: $width-card;
 
   .inner {
-    @extend .bg-white;
-    @extend .br2;
-
+    background-color: $warm-white;
+    border-radius: $radius;
     box-shadow: 2px 2px 3px $transparent;
     box-sizing: border-box;
     height: 100%;
@@ -27,8 +25,12 @@
     width: 100%;
   }
 
+  &.bg-black .inner {
+    background-color: $black;
+  }
+
   &.front {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     overflow-wrap: break-word;
     word-wrap: break-word;
 
