@@ -12,26 +12,13 @@ import Game from "./components/game/"
 export const routes = [
   { path: '/',
     component: AppContainer,
-    IndexRoute: [
-      { path: '/lobby',
-        components: Lobby
-      }
-    ],
     routes: [
       { path: '/lobby',
         exact: true,
         ...Lobby
       },
       { path: '/game/:gameId',
-        ...Game//,
-        // routes: [
-        //   { path: '/game/:gameId',
-        //     component: Bus
-        //   },
-        //   { path: '/game/cart',
-        //     component: Cart
-        //   }
-        // ]
+        ...Game
       }
     ]
   }
