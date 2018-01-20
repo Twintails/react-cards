@@ -19,6 +19,10 @@ class AppContainer extends ContainerBase {
   componentWillMount () {
     const {stores: {app}, services: {dispatcher}} = this.context
     const router = this.props
+    if (router.location.pathname === "/") {
+      console.log("MOOOOOOvin you on over to the lobby!") // eslint-disable-line no-console
+      router.history.push("/lobby")
+    }
     this.subscribe(app.dialogs$, dialogs => this.setState({dialogs}))
 
     this.subscribe(
