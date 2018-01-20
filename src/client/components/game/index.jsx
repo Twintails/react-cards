@@ -62,7 +62,7 @@ class GameSidebar extends ContainerBase {
   constructor(props) {
     super(props)
 
-    this._exitGame = () => this.props.history.push("/")
+    this._exitGame = () => this.props.history.push("/lobby")
 
     this._login = () => this.dispatch(A.dialogSet(A.DIALOG_LOGIN, true))
 
