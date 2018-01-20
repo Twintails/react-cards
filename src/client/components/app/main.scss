@@ -45,7 +45,7 @@ header {
       display: flex;
       flex-grow: 1;
       flex-direction: column;
-      width: 200px;
+      max-width: 200px;
 
       .m-sidebar-buttons {
         flex: none;

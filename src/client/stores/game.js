@@ -1,7 +1,7 @@
 import _ from "lodash"
 import { Observable } from "rxjs"
-import { Validator } from "../../server/shared/validation"
-import { validateMessage } from "../../server/shared/validation/chat"
+// import { Validator } from "../../server/shared/validation"
+// import { validateMessage } from "../../server/shared/validation/chat"
 import { mapOp$ } from "../../server/shared/observable"
 import * as A from "../actions"
 import { createView$ } from "../lib/stores"
@@ -39,21 +39,7 @@ export default class GameStore {
       [A.GAME_START]:        passThroughAction,
       [A.GAME_SELECT_CARD]:  passThroughAction,
       [A.GAME_SELECT_STACK]: passThroughAction,
-      [A.GAME_SEND_MESSAGE]: action => {
-        const validator = new Validator()
-        if (!user.isLoggedIn)
-          validator.push("You must be logged in.")
-
-        validator.push(validateMessage(action.message))
-
-        if (validator.didFail) {
-          dispatcher.fail(action, validator.message)
-          return
-        }
-
-        // TODO: Send to Socket
-        socket.emit("action", action)
-      }
+      [A.GAME_SEND_MESSAGE]: passThroughAction
     })
 
 
