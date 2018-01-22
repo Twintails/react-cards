@@ -10,12 +10,14 @@ $author-width: 5.5em;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  font-size: 1.3rem;
-  line-height: 1.3em;
+  font-size: 1.05rem;
+  line-height: 1.15em;
   position: relative;
 
   > .messages {
     @include unlistify;
+
+    background-image: linear-gradient(to right, $primary 50px, transparent 100%);
     flex-grow: 1;
     overflow-y: scroll;
     position: relative;
@@ -25,22 +27,26 @@ $author-width: 5.5em;
       display: flex;
 
       &:first-of-type {
-        > .author, > .message {
+        > .author,
+        > .message {
           padding-top: .5em;
         }
       }
 
       .author {
-        background: lighten($primary, .05%);
+        /* background: lighten($primary, .05%); */
         border-right: 2px solid lighten($primary, 15%);
         box-sizing: border-box;
+        flex: 0 0 12em;
+        font-size: .75em;
         min-width: $author-width;
-        padding-right: 5px;
+        padding: 0 5px;
         text-align: right;
       }
 
       .message {
-        margin-bottom: 1.33em;
+        flex-grow: 1;
+        margin-bottom: .66em;
         padding-left: 5px;
       }
     }
