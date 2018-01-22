@@ -61,7 +61,7 @@ export const GAME_SELECT_STACK = "GAME_SELECT_STACK"
 export const gameSelectStack = (gameId, stackId) => ({type: GAME_SELECT_STACK, gameId, stackId})
 
 export const GAME_SEND_MESSAGE = "GAME_SEND_MESSAGE"
-export const gameSendMessage = (gameId, messageId) => ({type: GAME_SEND_MESSAGE, gameId, message})
+export const gameSendMessage = (gameId, messageId) => ({type: GAME_SEND_MESSAGE, gameId, message: messageId})
 
 // ---- Game CONSTANTS
 
