@@ -20,7 +20,7 @@ export default function Card(props) {
   }
 
   return (
-    <div className={classes.join(" ")} onDoubleClick={click}>
+    <div className={classes.join(" ")} onDoubleClick={click} onTouchEnd={click}>
       {!card
         ? <div className="inner">Cards</div>
         : <div className="inner">
