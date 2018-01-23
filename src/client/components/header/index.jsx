@@ -29,7 +29,7 @@ class Header extends ContainerBase {
           className="icon"
           id="cow"
         />
-        <h1>Demo React App</h1>
+        <h1>Cards</h1>
         {/* <button className="login" onClick={this._click}>Login</button> */}
       </header>
     )

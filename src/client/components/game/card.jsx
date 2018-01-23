@@ -14,13 +14,21 @@ export default function Card(props) {
     isSelectable ? "is-selectable" : ""
   ]
 
-  const click = () => {
+  const click = (e) => {
+    e.preventDefault();
+    if (!isSelectable) return
+    onClick(card)
+  }
+
+  const tapp = (e) => {
+    console.log(e)
+    e.preventDefault();
     if (!isSelectable) return
     onClick(card)
   }
 
   return (
-    <div className={classes.join(" ")} onDoubleClick={click} onTouchEnd={click}>
+    <div className={classes.join(" ")} onDoubleClick={click} onTouchEnd={(e) => tapp(e)}>
       {!card
         ? <div className="inner">Cards</div>
         : <div className="inner">

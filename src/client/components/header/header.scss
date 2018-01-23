@@ -6,15 +6,18 @@ header {
   justify-content: space-between;
   margin: 0 auto;
   max-width: 900px;
-  padding: 1em;
+  padding: .3em;
 
   .icon {
-    max-height: 4em;
+    max-height: 1.5em;
+    max-width: 1.5em;
   }
 
   h1 {
+    font-size: 1em;
+    line-height: 1.5em;
     margin: 0;
-    padding: .3em 2em;
+    padding: 0 .5em;
   }
 
   .login {

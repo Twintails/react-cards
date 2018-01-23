@@ -34,7 +34,7 @@
 .c-player-list {
   @include unlistify;
   border-top: 1px solid $color-section-border;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   overflow-y: auto;
   position: relative;
 
@@ -51,6 +51,11 @@
       .name {
         font-weight: bold;
         margin-bottom: 5px;
+
+        @media screen and ( max-width: 600px ) {
+          max-width: 60px;
+          word-break: break-word;
+        }
       }
     }
 
@@ -63,7 +68,12 @@
     }
 
     &.is-playing .status {
+      background-image: radial-gradient(circle at center center, #c25000 30%, #b4411c 60%, #FF9800, #FFC107 100%);
+      background-image: radial-gradient(circle at center center, #c2500099 30%, #b4411c99 60%, #FF980099, #FFC10799 100%);
+      border-radius: 40%;
+      font-size: .7em;
       font-style: italic;
+      padding: 1.5em .5em;
     }
 
     &.is-winner {
@@ -72,5 +82,9 @@
       color: $color-good-text;
       margin-bottom: 1px;
     }
+  }
+
+  @media screen and ( max-width: 600px ) {
+    font-size: small;
   }
 }

@@ -41,5 +41,9 @@
     > .c-card {
       margin: 5px;
     }
+
+    @media screen and ( max-width: 600px ) {
+      max-height: 25vh;
+    }
   }
 }

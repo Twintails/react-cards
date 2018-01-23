@@ -42,6 +42,11 @@ $author-width: 5.5em;
         min-width: $author-width;
         padding: 0 5px;
         text-align: right;
+
+        @media screen and ( max-width: 600px ) {
+          flex-basis: 5.5em;
+        }
+
       }
 
       .message {

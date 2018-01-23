@@ -61,25 +61,30 @@ class AppContainer extends ContainerBase {
     // TODO: repair new RR4 settings to not show all routes in DOM
     return (
       <div className={`c-application ${dialogStack.length ? "dialogs-open" : "dialogs-closed"}`}>
-        <Header />
+
         <div className="dialogs">{dialogStack}</div>
         <div className="inner">
-          <div className="sidebar">{this.props.routes.map((route, index) => (
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              component={route.sidebar}
-            />
-          ))}</div>
-          <div className="main">{this.props.routes.map((route, index) => (
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              component={route.main}
-            />
-          ))}</div>
+          <div className="sidebar">
+            <Header />
+            {this.props.routes.map((route, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={route.sidebar}
+              />
+            ))}
+          </div>
+          <div className="main">
+            {this.props.routes.map((route, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={route.main}
+              />
+            ))}
+          </div>
         </div>
       </div>
     )
