@@ -21,7 +21,6 @@ export default function Card(props) {
   }
 
   const tapp = (e) => {
-    console.log(e)
     e.preventDefault();
     if (!isSelectable) return
     onClick(card)
