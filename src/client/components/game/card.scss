@@ -11,6 +11,10 @@
   position: relative;
   width: $width-card;
 
+  @media screen and ( max-width: 600px ) {
+    width: 200px;
+  }
+
   .inner {
     background-color: $warm-white;
     border-radius: $radius;
@@ -96,6 +100,10 @@
           z-index: $zi-game-card;
         }
       }
+    }
+
+    @media screen and ( max-width: 600px ) {
+      width: 170px;
     }
   }
 }
