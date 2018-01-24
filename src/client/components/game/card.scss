@@ -29,6 +29,10 @@
     width: 100%;
   }
 
+  &.is-playable .inner {
+    background-image: radial-gradient(farthest-corner at 40px 40px, fade-out($color-good, .8), fade-out($color-primary, .9));
+  }
+
   &.bg-black .inner {
     background-color: $black;
   }
