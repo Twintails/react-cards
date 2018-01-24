@@ -24,6 +24,10 @@ body {
   width: 100%;
 }
 
+.small {
+  font-size: small;
+}
+
 .m-button {
   @extend .link;
   @extend .br2;

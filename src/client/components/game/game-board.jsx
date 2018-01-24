@@ -49,14 +49,14 @@ export default class GameBoard extends ContainerBase {
         messageIsActive = opSelectCard.can
         message = opSelectCard.can
           ? "Please choose your cards."
-          : "Waiting for other players to join the game."
+          : "Waiting for others to play a card."
         break
 
       case A.STEP_JUDGE_STACKS:
         messageIsActive = opSelectStack.can
         message = opSelectStack.can
-          ? "please select the winning cards."
-          : "Waiting on the czar to decide a winner."
+          ? "Please choose a winner."
+          : "Waiting on the czar."
         break
 
       case A.STEP_WAIT:
