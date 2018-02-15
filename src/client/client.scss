@@ -11,7 +11,7 @@ body {
 
 body {
   background-color: darken($primary, 6%);
-  background-image: url('/img/tileable-wood.png');
+  // background-image: url('/img/tileable-wood.png');
   background-size: 100%;
   color: $warm-white;
   display: flex;
@@ -100,5 +100,6 @@ body {
   @extend .bg-washed-red;
   @extend .br2;
   @extend .ba;
-
+  margin: 15px;
+  padding: 1em;
 }

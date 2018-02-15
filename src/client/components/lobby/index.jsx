@@ -86,7 +86,7 @@ class LobbySidebar extends ContainerBase {
 function GameList({games, joinGame}) {
   return (
     <section className="c-game-list">
-      {games.length > 0 ? null : <div className="no-game">No games available, you should start one!</div>}
+      {games.length > 0 ? null : <div className="no-game">No games available, you should login and start one!</div>}
 
       {games.map(game =>
         <div className="game" key={game.id} onClick={() => joinGame(game)}>

@@ -6,7 +6,7 @@ $author-width: 5.5em;
 .c-chat {
   @include section;
   backdrop-filter: blur(3px) brightness(18%);
-  background-image: url('/img/wine-cork.png');
+  // background-image: url('/img/wine-cork.png');
   display: flex;
   flex-direction: column;
   flex-grow: 1;
