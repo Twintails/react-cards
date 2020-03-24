@@ -28,7 +28,7 @@ export default class AppStore {
     this.dialogs$.connect()
 
     socket.on("connect", () => dispatcher.emit(A.appConnectionSet(A.CONNECTION_CONNECTED)))
-    socket.on("reconnecting", () => dispatcher.emit(A.appConnectionSet(A.CONNECTION_RECONNECTED)))
+    socket.on("reconnecting", () => dispatcher.emit(A.appConnectionSet(A.CONNECTION_RECONNECTING)))
     socket.on("disconnect", () => dispatcher.emit(A.appConnectionSet(A.CONNECTION_DISCONNECTED)))
     socket.on("reconnect", () => dispatcher.emit(A.appConnectionReconnected()))
 

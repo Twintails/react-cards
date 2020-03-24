@@ -1,7 +1,8 @@
 var path = require('path'),
     _ = require('lodash'),
     webpack = require('webpack'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin')
+    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+    UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 
 const vendor = [
@@ -18,8 +19,8 @@ const config = createConfig(process.env.NODE_ENV !== "production")
 
 function createConfig(isDebug) {
   const devtool = isDebug ? 'eval-source-map' : undefined
+  const mode = isDebug ? 'development' : 'production'
   const plugins = [
-    new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js'}),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: `"${process.env.NODE_ENV || "development"}"`
@@ -34,14 +35,14 @@ function createConfig(isDebug) {
     eslint: {test: /\.jsx?$/, loader: "eslint-loader", exclude: /node_modules/ },
     css:    {
       test: /\.css$/, use: [
-        { loader: 'style-loader', options: { singleton: true, sourceMap: true }},
+        { loader: 'style-loader', options: { injectType: 'styleTag' }},
         // { loader: 'file-loader' },
         { loader: "css-loader", options: { sourceMap: true }}
       ],
       exclude: /node_modules/ },
     sass:   {
       test: /\.scss$/, use: [
-        { loader: 'style-loader', options: { singleton: true, sourceMap: true }},
+        { loader: 'style-loader', options: { injectType: 'styleTag' }},
         // { loader: 'file-loader' },
         { loader: "css-loader", options: { sourceMap: true }},
         { loader: "sass-loader", options: { sourceMap: true }}
@@ -49,7 +50,7 @@ function createConfig(isDebug) {
     files:  { test:/\.(tif|tiff|png|jpg|jpeg|gif|woff|ttf|eot|svg|woff2)(\?\S*)?$/, loader: "url-loader?limit=5000"}
   }
 
-  const clientEntry = ["babel-polyfill", "./src/client/client"]
+  const clientEntry = [ "./src/client/client"]
   let publicPath = "./build/"
 
   if (isDebug) {
@@ -61,8 +62,8 @@ function createConfig(isDebug) {
     )
     publicPath = "http://localhost:8080/build/"
   } else {
-    const extract_CSS = new ExtractTextPlugin("[name].css")
-    const extract_SCSS = new ExtractTextPlugin("[name].css")
+    const extract_CSS = new MiniCssExtractPlugin()
+    const extract_SCSS = new MiniCssExtractPlugin()
     plugins.push(
       // new webpack.optimize.DedupePlugin(),
       extract_CSS,
@@ -71,10 +72,12 @@ function createConfig(isDebug) {
     )
     rules.css.use = extract_CSS.extract({
       fallback: "style-loader",
-      use: [{
-        loader: "css-loader",
-        options: {
-          minimize: true
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: "css-loader",
+          options: {
+            minimize: true
         }
       }]
     }),
@@ -82,6 +85,7 @@ function createConfig(isDebug) {
       fallback: 'style-loader',
       //resolve-url-loader may be chained before sass-loader if necessary
       use: [
+        MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
           options: {
@@ -95,6 +99,7 @@ function createConfig(isDebug) {
 
   return {
     name: "client",
+    mode,
     devtool,
     entry: {
       app: clientEntry,
@@ -113,6 +118,21 @@ function createConfig(isDebug) {
     },
     module: {
       rules: _.values(rules)
+    },
+    optimization: {
+      minimizer: [
+        // we specify a custom UglifyJsPlugin here to get source maps in production
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          uglifyOptions: {
+            compress: false,
+            ecma: 6,
+            mangle: true
+          },
+          sourceMap: true
+        })
+      ]
     },
     plugins
   }

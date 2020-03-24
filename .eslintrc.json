@@ -11,6 +11,7 @@
   "parser": "babel-eslint",
   "rules": {
     "semi": 0,
+    "no-prototype-builtins": 0,
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "no-unused-vars": 1,
     "indent": [
