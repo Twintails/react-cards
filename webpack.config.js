@@ -62,11 +62,15 @@ function createConfig(isDebug) {
     )
     publicPath = "http://localhost:8080/build/"
   } else {
-    const extract_CSS = new MiniCssExtractPlugin()
-    const extract_SCSS = new MiniCssExtractPlugin()
+    const extract_CSS = new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: isDebug ? '[name].css' : '[name].[hash].css',
+      chunkFilename: isDebug ? '[id].css' : '[id].[hash].css',
+    })
+
     plugins.push(
       extract_CSS,
-      extract_SCSS,
     )
     rules.css.use = extract_CSS.extract({
       fallback: "style-loader",
@@ -74,23 +78,20 @@ function createConfig(isDebug) {
         MiniCssExtractPlugin.loader,
         {
           loader: "css-loader",
-          options: {
-            minimize: true
-        }
       }]
     }),
     rules.sass.use = extract_SCSS.extract({
       fallback: 'style-loader',
       //resolve-url-loader may be chained before sass-loader if necessary
       use: [
-        MiniCssExtractPlugin.loader,
         {
-          loader: 'css-loader',
+          loader: MiniCssExtractPlugin.loader,
           options: {
-            minimize: true
-          }
+            hmr: process.env.NODE_ENV === 'development',
+          },
         },
-        'sass-loader'
+        'css-loader',
+        'sass-loader',
       ]
     })
   }
