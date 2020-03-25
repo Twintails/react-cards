@@ -18,8 +18,8 @@ const config = createConfig(process.env.NODE_ENV !== "production")
 
 
 function createConfig(isDebug) {
-  const devtool = isDebug ? 'eval-source-map' : undefined
-  const mode = isDebug ? 'development' : 'production'
+  const devtool = isDebug ? 'eval-source-map' : undefined;
+  const mode = isDebug ? 'development' : 'production';
   const plugins = [
     new webpack.DefinePlugin({
       'process.env': {
@@ -27,21 +27,23 @@ function createConfig(isDebug) {
       },
       IS_PRODUCTION: !isDebug,
       IS_DEVELOPMENT: isDebug
-    })
+    }),
   ]
 
   const rules = {
     js:     {test: /\.jsx?$/, loader: "babel-loader", exclude: /node_modules/ },
     eslint: {test: /\.jsx?$/, loader: "eslint-loader", exclude: /node_modules/ },
     css:    {
-      test: /\.css$/, use: [
+      test: /\.css$/,
+      use: [
         { loader: 'style-loader', options: { injectType: 'styleTag' }},
         // { loader: 'file-loader' },
         { loader: "css-loader", options: { sourceMap: true }}
       ],
       exclude: /node_modules/ },
     sass:   {
-      test: /\.scss$/, use: [
+      test: /\.scss$/,
+      use: [
         { loader: 'style-loader', options: { injectType: 'styleTag' }},
         // { loader: 'file-loader' },
         { loader: "css-loader", options: { sourceMap: true }},
@@ -62,32 +64,29 @@ function createConfig(isDebug) {
     )
     publicPath = "http://localhost:8080/build/"
   } else {
-    const extract_CSS = new MiniCssExtractPlugin({
+    plugins.push(new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
       filename: isDebug ? '[name].css' : '[name].[hash].css',
       chunkFilename: isDebug ? '[id].css' : '[id].[hash].css',
-    })
+    }))
 
-    plugins.push(
-      extract_CSS
-    )
-
-    rules = [
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: process.env.NODE_ENV === 'development',
-            },
-          },
-          'css-loader',
-          'sass-loader',
-        ],
-      }
+    rules.css.use = [
+      { loader: MiniCssExtractPlugin.loader },
+      "css-loader"
     ]
+
+    rules.sass.use = [
+      {
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          hmr: process.env.NODE_ENV === 'development',
+        },
+      },
+      'css-loader',
+      'sass-loader',
+    ]
+  }
 
   return {
     name: "client",
@@ -109,7 +108,7 @@ function createConfig(isDebug) {
       }
     },
     module: {
-      rules: _.values(rules)
+      rules: _.values(rules),
     },
     optimization: {
       minimizer: [
@@ -118,7 +117,7 @@ function createConfig(isDebug) {
           cache: true,
           parallel: true,
           uglifyOptions: {
-            compress: { warnings: false },
+            compress: {},
             ecma: 6,
             mangle: true
           },
@@ -129,6 +128,7 @@ function createConfig(isDebug) {
     plugins
   }
 }
+
 
 
 module.exports = config
