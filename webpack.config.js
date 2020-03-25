@@ -70,31 +70,24 @@ function createConfig(isDebug) {
     })
 
     plugins.push(
-      extract_CSS,
+      extract_CSS
     )
-    rules.css.use = extract_CSS.extract({
-      fallback: "style-loader",
-      use: [
-        MiniCssExtractPlugin.loader,
-        {
-          loader: "css-loader",
-      }]
-    }),
-    rules.sass.use = extract_SCSS.extract({
-      fallback: 'style-loader',
-      //resolve-url-loader may be chained before sass-loader if necessary
-      use: [
-        {
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            hmr: process.env.NODE_ENV === 'development',
+
+    rules = [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development',
+            },
           },
-        },
-        'css-loader',
-        'sass-loader',
-      ]
-    })
-  }
+          'css-loader',
+          'sass-loader',
+        ],
+      }
+    ]
 
   return {
     name: "client",
