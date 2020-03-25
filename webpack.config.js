@@ -1,8 +1,8 @@
 var path = require('path'),
     _ = require('lodash'),
     webpack = require('webpack'),
-    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-    UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+    MiniCssExtractPlugin = require('mini-css-extract-plugin')
+    // UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 
 const vendor = [
@@ -67,8 +67,8 @@ function createConfig(isDebug) {
     plugins.push(new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: isDebug ? '[name].css' : '[name].[hash].css',
-      chunkFilename: isDebug ? '[id].css' : '[id].[hash].css',
+      filename: isDebug ? '[name].css' : '[name].css',
+      chunkFilename: isDebug ? '[id].css' : '[id].css',
     }))
 
     rules.css.use = [
@@ -110,21 +110,21 @@ function createConfig(isDebug) {
     module: {
       rules: _.values(rules),
     },
-    optimization: {
-      minimizer: [
-        // we specify a custom UglifyJsPlugin here to get source maps in production
-        new UglifyJsPlugin({
-          cache: true,
-          parallel: true,
-          uglifyOptions: {
-            compress: {},
-            ecma: 6,
-            mangle: true
-          },
-          sourceMap: false
-        })
-      ]
-    },
+    // optimization: {
+    //   minimizer: [
+    //     // we specify a custom UglifyJsPlugin here to get source maps in production
+    //     new UglifyJsPlugin({
+    //       cache: true,
+    //       parallel: true,
+    //       uglifyOptions: {
+    //         compress: {},
+    //         ecma: 6,
+    //         mangle: true
+    //       },
+    //       sourceMap: false
+    //     })
+    //   ]
+    // },
     plugins
   }
 }
