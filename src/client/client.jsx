@@ -1,4 +1,4 @@
-import url from "./client.scss" // eslint-disable-line no-unused-vars
+// SCSS import removed - migrating to styled-components
 
 import _ from "lodash"
 import React from "react"
@@ -16,7 +16,7 @@ const dispatcher = new Dispatcher()
 const socket = io()
 const services = {dispatcher, socket}
 
-if (IS_DEVELOPMENT) {
+if (import.meta.env.DEV) {
   dispatcher.on("*", printAction)
 }
 
